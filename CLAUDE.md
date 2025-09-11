@@ -19,16 +19,7 @@
 search: ~/bin/bf 'query'
 status: brain-status
 save: brain-save
-sync: brain-sync  # Global Obsidian sync
-patterns: brain-patterns 'query'
 ```
-
-### 🔄 Global Obsidian Sync Active
-- **Auto-sync**: Every session end + Git commits
-- **Manual sync**: `brain-sync` command
-- **Force sync**: `brain-sync --force`
-- **Location**: `/Saksham/brain-system/`
-- **Indexed**: Everything searchable
 
 ### Active Entities
 - claude_web: AI agent, suggested job_dread_mvp
