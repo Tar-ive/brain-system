@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# Local data (don't sync personal memories)
+working-memory/*.json
+!working-memory/.gitkeep
+active_goals.json
+wins_log.json
+commitment.json
+current_session.json
+daily-goals/*.jpg
+daily-goals/*.json
+!daily-goals/.gitkeep
+
+# User-specific
+.DS_Store
+*.swp
+*.swo
+*~
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Session data
+sessions/
+~/.brain/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Keep structure files
+!.gitkeep
