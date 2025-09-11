@@ -20,9 +20,24 @@ class PhotoGoalExtractor:
     """
     
     def __init__(self):
-        self.goals_dir = Path("/Users/tarive/brain-poc/daily-goals")
+        self.brain_dir = Path("/Users/tarive/brain-poc")
+        self.goals_dir = self.brain_dir / "daily-goals"
         self.goals_dir.mkdir(exist_ok=True)
         self.working_memory_limit = 7  # From brain.md
+        
+        # Load goal keeper for integration
+        self.goal_keeper = self._load_goal_keeper()
+    
+    def _load_goal_keeper(self):
+        """Load the existing goal keeper for commitment tracking"""
+        import sys
+        sys.path.append(str(self.brain_dir))
+        try:
+            from goal_keeper import GoalKeeper
+            return GoalKeeper()
+        except ImportError:
+            print("Note: goal_keeper.py not found, using standalone mode")
+            return None
         
     def process_photo(self, photo_path: Optional[str] = None) -> Dict:
         """
@@ -60,10 +75,36 @@ class PhotoGoalExtractor:
         # Update working memory with today's goals
         self.update_working_memory(goals_data)
         
+        # Integrate with goal keeper if available
+        if self.goal_keeper:
+            self._integrate_with_goal_keeper(goals_data)
+        
         # Create progress tracking file
         self.create_progress_tracker(goals_data)
         
         return goals_data
+    
+    def _integrate_with_goal_keeper(self, goals_data: Dict):
+        """Integrate extracted goals with goal keeper for commitment tracking"""
+        try:
+            # Add high priority goals as next actions
+            for goal in goals_data.get("goals", []):
+                if goal["priority"] == "high":
+                    # Check if brain_system project exists
+                    if "brain_system" in self.goal_keeper.goals:
+                        # Add to next actions if not already there
+                        next_actions = self.goal_keeper.goals["brain_system"].get("next_actions", [])
+                        if goal["text"] not in next_actions:
+                            self.goal_keeper.goals["brain_system"]["next_actions"].append(goal["text"])
+                    
+                    # Log as a potential win when completed
+                    goal["goal_keeper_tracked"] = True
+            
+            # Save goal keeper state
+            self.goal_keeper._save_goals()
+            print("✅ Integrated with Goal Keeper for commitment tracking")
+        except Exception as e:
+            print(f"Note: Could not integrate with goal keeper: {e}")
     
     def extract_goals_from_photo(self, photo_path: Path) -> Dict:
         """
