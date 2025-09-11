@@ -210,6 +210,14 @@ class SmartContextLoader:
         with open(self.claude_md, 'w') as f:
             f.write(content)
         
+        # DEEP SYNC TO OBSIDIAN
+        try:
+            from obsidian_deep_sync import deep_sync_everything
+            deep_sync_everything()
+            print("✅ Synced to Obsidian")
+        except Exception as e:
+            print(f"⚠️ Obsidian sync failed: {e}")
+        
         print(f"✅ Smart context saved (limited to {self.WORKING_MEMORY_LIMIT} items)")
         print(f"📊 Cognitive load: {len(context.get('working_memory', []))}/7")
         return context

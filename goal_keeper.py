@@ -99,6 +99,13 @@ class GoalKeeper:
         self._save_wins()
         self._save_goals()
         
+        # DEEP SYNC TO OBSIDIAN
+        try:
+            from obsidian_deep_sync import deep_sync_everything
+            deep_sync_everything()
+        except:
+            pass
+        
         # Dopamine reward message
         streak = self.goals[project]["days_worked"]
         return f"""

@@ -1,0 +1,82 @@
+{
+  "xml_tags": {
+    "people": {
+      "description": "Person references",
+      "examples": [
+        "<people>baby</people>",
+        "<people>harshal</people>"
+      ]
+    },
+    "project": {
+      "description": "Project references",
+      "examples": [
+        "<project>ybrowser</project>",
+        "<project>brain-system</project>"
+      ]
+    },
+    "b": {
+      "description": "Brain system functionalities/updates",
+      "examples": [
+        "<b>add indexing docs</b>",
+        "<b>fix search bug</b>"
+      ]
+    },
+    "bfeatures": {
+      "description": "Brain system feature requests",
+      "examples": [
+        "<bfeatures>integrate with imessage</bfeatures>",
+        "<bfeatures>add voice notes</bfeatures>"
+      ]
+    },
+    "research": {
+      "description": "Research insights and findings",
+      "examples": [
+        "<research>Newton's philosophy of time</research>",
+        "<research>quantum computing applications</research>"
+      ]
+    },
+    "goals": {
+      "description": "Personal and professional goals",
+      "examples": [
+        "<goals>get O1 visa</goals>",
+        "<goals>complete PhD</goals>"
+      ]
+    },
+    "chores": {
+      "description": "Daily tasks and chores",
+      "examples": [
+        "<chores>make baby chutney</chores>",
+        "<chores>grocery shopping</chores>"
+      ]
+    }
+  },
+  "dimensions": {
+    "personal": {
+      "description": "Personal life, relationships, health",
+      "weight": 1.0
+    },
+    "work": {
+      "description": "Professional work, job applications",
+      "weight": 1.0
+    },
+    "research": {
+      "description": "Academic research, papers, insights",
+      "weight": 1.2
+    },
+    "uni": {
+      "description": "University activities, courses, deadlines",
+      "weight": 1.0
+    },
+    "startup": {
+      "description": "Entrepreneurial activities, business ideas",
+      "weight": 1.1
+    }
+  },
+  "integration": {
+    "simple_brain": true,
+    "goal_keeper": true,
+    "working_memory": true,
+    "basic_memory": true,
+    "obsidian_sync": true
+  }
+}

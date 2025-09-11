@@ -117,6 +117,14 @@ class AutoCommit:
                     cwd=self.brain_dir
                 )
                 
+                # DEEP SYNC TO OBSIDIAN after every commit
+                try:
+                    from obsidian_deep_sync import deep_sync_everything
+                    deep_sync_everything()
+                    print("✅ Synced to Obsidian")
+                except Exception as e:
+                    print(f"⚠️ Obsidian sync failed: {e}")
+                
                 if push_result.returncode == 0:
                     return True
                 else:

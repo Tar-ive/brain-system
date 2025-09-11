@@ -100,6 +100,13 @@ class SimpleBrain:
         )
         self.conn.commit()
         
+        # DEEP SYNC TO OBSIDIAN
+        try:
+            from obsidian_deep_sync import deep_sync_everything
+            deep_sync_everything()
+        except:
+            pass
+        
         return True
     
     def search(self, query: str, threshold: float = 0.75) -> List[Dict]:

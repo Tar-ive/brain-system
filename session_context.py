@@ -64,6 +64,14 @@ class SessionContext:
         # Also create a markdown summary for Obsidian
         self.create_session_summary(context_data)
         
+        # DEEP SYNC TO OBSIDIAN
+        try:
+            from obsidian_deep_sync import deep_sync_everything
+            deep_sync_everything()
+            print("✅ Synced to Obsidian")
+        except Exception as e:
+            print(f"⚠️ Obsidian sync failed: {e}")
+        
         print(f"✅ Session context saved to: {self.context_file}")
         return context_data
     
