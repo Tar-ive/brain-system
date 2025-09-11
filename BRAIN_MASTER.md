@@ -45,6 +45,17 @@ bstart  # Shows goals, loads context, tells you what to focus on
 | `bh` | Heal the system | When ANYTHING fails |
 | `c "thought"` | Capture a memory | Important thoughts |
 | `f "search"` | Find memories | Need to recall |
+| `bgit` | Check backup status | See git status |
+| `bbackup` | Force backup now | Manual save |
+
+### 🔄 Automatic Backups
+
+**Your brain now auto-commits every hour!**
+- Checks for changes hourly
+- Commits and pushes to GitHub automatically
+- No action needed - it just works
+- Check status: `bgit`
+- Force backup: `bbackup "reason"`
 
 ### Example Daily Flow
 
