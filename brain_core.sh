@@ -27,6 +27,8 @@ win() {
     # Auto-sync wins to Obsidian
     python3 "$BRAIN_DIR/obsidian_sync.py" >/dev/null 2>&1 &
     echo "📝 Synced to Obsidian"
+    # Check for auto-commit
+    python3 "$BRAIN_DIR/auto_commit.py" check >/dev/null 2>&1 &
 }
 
 # Log a blocker (without quitting!)
@@ -91,6 +93,19 @@ heal() {
     echo "✅ Brain healed"
 }
 
+# Git status check
+git_status() {
+    echo "📊 Git Status:"
+    python3 "$BRAIN_DIR/auto_commit.py" status
+}
+
+# Force backup
+backup() {
+    echo "💾 Backing up to GitHub..."
+    python3 "$BRAIN_DIR/auto_commit.py" force "${1:-Manual backup}"
+    echo "✅ Backup complete"
+}
+
 # Daily startup routine
 startup() {
     echo "🌅 BRAIN STARTUP ROUTINE"
@@ -109,7 +124,7 @@ startup() {
 }
 
 # Export all functions
-export -f brain win blocker unblock capture find_memory save_session load_session heal startup
+export -f brain win blocker unblock capture find_memory save_session load_session heal startup git_status backup
 
 # Aliases for ultra-quick access
 alias b="brain"
@@ -122,6 +137,8 @@ alias bs="save_session"
 alias bl="load_session"
 alias bh="heal"
 alias bstart="startup"
+alias bgit="git_status"
+alias bbackup="backup"
 
 echo "🧠 Brain Core Loaded!"
 echo "Commands: b (status), w (win), bl (blocker), c (capture), f (find)"
