@@ -318,33 +318,43 @@ class EnhancedXMLBrain(UnifiedXMLBrain):
     def _analyze_job_application_replies(self) -> str:
         """Analyze inbox for job application replies"""
         try:
-            # Use Gmail MCP to search for job-related emails
-            search_query = 'subject:(application OR interview OR position OR role OR hiring) OR from:(recruiting OR hr OR talent)'
+            # Try to use actual Gmail integration
+            try:
+                from gmail_integration import get_gmail_analyzer
+                analyzer = get_gmail_analyzer()
+                
+                if analyzer.service:
+                    # Use actual Gmail API
+                    analysis = analyzer.analyze_job_applications()
+                    return analyzer.format_job_analysis(analysis)
+            except ImportError:
+                pass
             
-            # This would use the Gmail MCP server once credentials are set up
-            # For now, return a structured analysis template
-            
+            # Fallback to template if Gmail not available
             analysis = {
                 'total_job_emails': 0,
                 'replies_received': 0,
                 'interviews_scheduled': 0,
                 'rejections': 0,
                 'pending_responses': 0,
-                'time_period': 'last 30 days'
+                'time_period': 'last 30 days',
+                'gmail_configured': False
             }
-            
-            # TODO: Implement actual Gmail API calls once MCP is configured
             
             result = f"""📊 Job Application Analysis:
             
+⚠️ Gmail not configured. Please complete OAuth setup:
+   1. Go to https://console.cloud.google.com/
+   2. Create OAuth credentials  
+   3. Save as /Users/tarive/brain-poc/mcp-gmail/credentials.json
+   4. Test with: python3 /Users/tarive/brain-poc/mcp-gmail/scripts/test_gmail_setup.py
+
 📧 Total job-related emails: {analysis['total_job_emails']}
 ✅ Replies received: {analysis['replies_received']}  
 📅 Interviews scheduled: {analysis['interviews_scheduled']}
 ❌ Rejections: {analysis['rejections']}
 ⏳ Pending responses: {analysis['pending_responses']}
-📈 Time period: {analysis['time_period']}
-
-Next steps: Follow up on pending applications, prepare for scheduled interviews."""
+📈 Time period: {analysis['time_period']}"""
             
             return result
             
@@ -357,7 +367,32 @@ Next steps: Follow up on pending applications, prepare for scheduled interviews.
 
     def _search_founder_emails(self, search_terms: List[str]) -> str:
         """Search for founder-related emails"""
-        return f"Searching for founder emails with terms: {', '.join(search_terms)}"
+        try:
+            # Try to use actual Gmail integration
+            try:
+                from gmail_integration import get_gmail_analyzer
+                analyzer = get_gmail_analyzer()
+                
+                if analyzer.service:
+                    # Use actual Gmail API
+                    founder_data = analyzer.search_founder_emails()
+                    result = f"🤝 Founder Communications Analysis:\n\n"
+                    result += f"📧 Total founder emails: {founder_data['total_founder_emails']}\n"
+                    result += f"📈 Time period: {founder_data['time_period']}\n\n"
+                    
+                    if founder_data['founders']:
+                        result += "Recent founder contacts:\n"
+                        for founder in founder_data['founders'][:5]:
+                            result += f"• From: {founder['from'][:60]}\n"
+                            result += f"  Subject: {founder['subject'][:80]}\n\n"
+                    
+                    return result
+            except ImportError:
+                pass
+            
+            return f"Searching for founder emails with terms: {', '.join(search_terms)}"
+        except Exception as e:
+            return f"Founder email search failed: {str(e)}"
 
     def _general_gmail_search(self, search_terms: List[str]) -> str:
         """General Gmail search"""
