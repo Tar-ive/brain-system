@@ -123,8 +123,57 @@ startup() {
     python3 "$BRAIN_DIR/goal_keeper.py" next
 }
 
+# WhatsApp MCP Integration Commands
+wa_status() {
+    echo "📱 WhatsApp MCP Status:"
+    curl -s http://localhost:8080/status 2>/dev/null || echo "❌ WhatsApp bridge not running"
+    echo ""
+    echo "MCP Server Status:"
+    claude mcp list | grep whatsapp
+}
+
+wa_auth() {
+    echo "🔐 Starting WhatsApp authentication..."
+    echo "📱 Scan QR code with your phone: WhatsApp → Settings → Linked Devices"
+    cd /Users/tarive/brain-poc/integrations/whatsapp-mcp/whatsapp-bridge
+    ./whatsapp-bridge
+}
+
+wa_bridge_start() {
+    echo "🌉 Starting WhatsApp bridge server..."
+    cd /Users/tarive/brain-poc/integrations/whatsapp-mcp/whatsapp-bridge
+    ./whatsapp-bridge &
+    sleep 3
+    wa_status
+}
+
+wa_bridge_stop() {
+    echo "🛑 Stopping WhatsApp bridge..."
+    pkill -f whatsapp-bridge
+    echo "✅ Bridge stopped"
+}
+
+wa_memory_store() {
+    echo "💾 Storing WhatsApp conversation to Basic Memory..."
+    echo "$*" | basic-memory tool write-note --title "WhatsApp: $(date '+%Y-%m-%d %H:%M')" --folder "communications" --tags "whatsapp"
+    echo "✅ Stored to Basic Memory"
+}
+
+wa_test_connection() {
+    echo "🧪 Testing WhatsApp MCP integration..."
+    echo "1. Bridge Status:"
+    wa_status
+    echo ""
+    echo "2. MCP Tools Available:"
+    echo "   - Search contacts"
+    echo "   - Search messages" 
+    echo "   - Send messages (if enabled)"
+    echo ""
+    echo "⚠️  Authentication required: Run 'wa-auth' with phone access"
+}
+
 # Export all functions
-export -f brain win blocker unblock capture find_memory save_session load_session heal startup git_status backup
+export -f brain win blocker unblock capture find_memory save_session load_session heal startup git_status backup wa_status wa_auth wa_bridge_start wa_bridge_stop wa_memory_store wa_test_connection
 
 # Aliases for ultra-quick access
 alias b="brain"
@@ -140,6 +189,15 @@ alias bstart="startup"
 alias bgit="git_status"
 alias bbackup="backup"
 
+# WhatsApp aliases
+alias wa="wa_status"
+alias wa-auth="wa_auth"
+alias wa-start="wa_bridge_start"  
+alias wa-stop="wa_bridge_stop"
+alias wa-store="wa_memory_store"
+alias wa-test="wa_test_connection"
+
 echo "🧠 Brain Core Loaded!"
 echo "Commands: b (status), w (win), bl (blocker), c (capture), f (find)"
+echo "WhatsApp: wa (status), wa-auth, wa-start, wa-stop, wa-test"
 echo "Start with: bstart"
