@@ -7,10 +7,6 @@
 - **Mode**: execution
 
 ### Working Memory (3/7 items)
-- Send work update to Dr. Ekren (dci-analysis)...
-- Reply to Harshal...
-- Validate job_dread_mvp idea from claude_web...
-
 ### Today's Tasks
 
 
@@ -24,7 +20,6 @@ reload-shell: source /Users/tarive/brain-poc/brain_core.sh  # After adding new c
 
 ### Active Entities
 - claude_web: AI agent, suggested job_dread_mvp
-- harshal: needs reply
 
 ---
 
