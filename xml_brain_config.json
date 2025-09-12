@@ -2,6 +2,7 @@
   "xml_tags": {
     "people": {
       "description": "Person references",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/people",
       "examples": [
         "<people>baby</people>",
         "<people>harshal</people>"
@@ -23,9 +24,34 @@
     },
     "bfeatures": {
       "description": "Brain system feature requests",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
       "examples": [
         "<bfeatures>integrate with imessage</bfeatures>",
         "<bfeatures>add voice notes</bfeatures>"
+      ]
+    },
+    "bfeature": {
+      "description": "Brain system feature requests (singular form)",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
+      "examples": [
+        "<bfeature>add whatsapp mcp</bfeature>",
+        "<bfeature>integrate calendar sync</bfeature>"
+      ]
+    },
+    "daily": {
+      "description": "Daily project status and progress tracking",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/daily",
+      "examples": [
+        "<daily>brain-system project 80% complete</daily>",
+        "<daily>ybrowser integration testing phase</daily>"
+      ]
+    },
+    "insight": {
+      "description": "Key insights, discoveries, and breakthrough moments",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/insights",
+      "examples": [
+        "<insight>unified brain approach reduces cognitive load</insight>",
+        "<insight>XML tagging provides natural categorization</insight>"
       ]
     },
     "research": {
@@ -77,6 +103,10 @@
     "goal_keeper": true,
     "working_memory": true,
     "basic_memory": true,
-    "obsidian_sync": true
+    "obsidian_sync": true,
+    "obsidian_people_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/people",
+    "obsidian_bfeatures_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
+    "obsidian_daily_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/daily",
+    "obsidian_insights_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/insights"
   }
 }
