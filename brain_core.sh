@@ -125,11 +125,14 @@ startup() {
 
 # WhatsApp MCP Integration Commands
 wa_status() {
-    echo "📱 WhatsApp MCP Status:"
-    curl -s http://localhost:8080/status 2>/dev/null || echo "❌ WhatsApp bridge not running"
+    echo "📱 WhatsApp MCP Status: ❌ KNOWN ISSUE"
+    echo "Error: Client outdated (405) - WhatsApp servers blocking connection"
+    echo "Tracking: https://github.com/lharries/whatsapp-mcp/issues/94"
     echo ""
     echo "MCP Server Status:"
     claude mcp list | grep whatsapp
+    echo ""
+    echo "🔄 Workaround: Consider iOS Shortcuts or manual export integration"
 }
 
 wa_auth() {
@@ -164,16 +167,84 @@ wa_test_connection() {
     echo "1. Bridge Status:"
     wa_status
     echo ""
-    echo "2. MCP Tools Available:"
-    echo "   - Search contacts"
-    echo "   - Search messages" 
-    echo "   - Send messages (if enabled)"
+    echo "2. Current Status: ❌ BLOCKED"
+    echo "   - WhatsApp servers reject outdated client version"
+    echo "   - Issue tracked at: https://github.com/lharries/whatsapp-mcp/issues/94"
     echo ""
-    echo "⚠️  Authentication required: Run 'wa-auth' with phone access"
+    echo "3. Alternative Solutions:"
+    echo "   ✅ iOS Shortcuts integration"
+    echo "   ✅ Manual chat export + Claude processing"
+    echo "   ✅ Basic Memory storage ready"
+    echo ""
+    echo "💡 Next: Try 'wa-alternative' for workaround options"
+}
+
+wa_alternative() {
+    echo "🔄 WhatsApp Alternative Integration Options:"
+    echo ""
+    echo "1. 📱 iOS Shortcuts Integration (Recommended) ✅ READY"
+    echo "   - Bridge server: wa-ios-start"
+    echo "   - Setup guide: wa-ios-setup"
+    echo "   - No API dependency, works directly with phone"
+    echo ""
+    echo "2. 📄 Manual Export Method"
+    echo "   - Export chat from WhatsApp"
+    echo "   - Process with Claude via Basic Memory"
+    echo "   - Command: wa-manual-import <file>"
+    echo ""
+    echo "3. 🏢 WhatsApp Business API"
+    echo "   - Requires business account verification"
+    echo "   - More reliable but complex setup"
+    echo "   - Command: wa-business-setup (advanced)"
+    echo ""
+    echo "🧠 All methods integrate with existing brain system!"
+}
+
+wa_ios_start() {
+    echo "🌉 Starting WhatsApp iOS Bridge..."
+    echo "📱 This will receive WhatsApp data from iOS Shortcuts"
+    echo "💾 Auto-stores to Basic Memory with brain system integration"
+    echo ""
+    python3 /Users/tarive/brain-poc/integrations/whatsapp-mcp/whatsapp-ios-bridge.py
+}
+
+wa_ios_setup() {
+    echo "📱 WhatsApp iOS Shortcuts Setup Guide"
+    echo "===================================="
+    echo ""
+    echo "Step 1: Start the bridge server"
+    echo "   Run: wa-ios-start (in another terminal)"
+    echo ""
+    echo "Step 2: Create iOS Shortcut"
+    echo "   1. Open Shortcuts app on iPhone"
+    echo "   2. Tap + to create new shortcut"
+    echo "   3. Add these actions:"
+    echo ""
+    echo "   Action 1: 'Ask for Input'"
+    echo "   - Prompt: 'Paste WhatsApp conversation'"
+    echo "   - Input Type: Text"
+    echo ""
+    echo "   Action 2: 'Get Contents of URL'"
+    echo "   - URL: http://[YOUR-MAC-IP]:3000/whatsapp-store"
+    echo "   - Method: POST"
+    echo "   - Request Body: [Output from Action 1]"
+    echo ""
+    echo "   Action 3: 'Show Result'"
+    echo "   - Shows: [Contents of URL]"
+    echo ""
+    echo "Step 3: Usage"
+    echo "   1. Export WhatsApp chat (Share → Export Chat → Without Media)"
+    echo "   2. Copy the exported text"
+    echo "   3. Run your iOS Shortcut"
+    echo "   4. Paste the WhatsApp text"
+    echo "   5. ✅ Auto-stored to Basic Memory!"
+    echo ""
+    echo "💡 Find your Mac IP: System Preferences → Network"
+    echo "🔍 View stored chats: basic-memory tool search-notes whatsapp"
 }
 
 # Export all functions
-export -f brain win blocker unblock capture find_memory save_session load_session heal startup git_status backup wa_status wa_auth wa_bridge_start wa_bridge_stop wa_memory_store wa_test_connection
+export -f brain win blocker unblock capture find_memory save_session load_session heal startup git_status backup wa_status wa_auth wa_bridge_start wa_bridge_stop wa_memory_store wa_test_connection wa_alternative wa_ios_start wa_ios_setup
 
 # Aliases for ultra-quick access
 alias b="brain"
@@ -196,8 +267,11 @@ alias wa-start="wa_bridge_start"
 alias wa-stop="wa_bridge_stop"
 alias wa-store="wa_memory_store"
 alias wa-test="wa_test_connection"
+alias wa-alt="wa_alternative"
+alias wa-ios="wa_ios_start"
+alias wa-setup="wa_ios_setup"
 
 echo "🧠 Brain Core Loaded!"
 echo "Commands: b (status), w (win), bl (blocker), c (capture), f (find)"
-echo "WhatsApp: wa (status), wa-auth, wa-start, wa-stop, wa-test"
+echo "WhatsApp: wa-setup (iOS setup), wa-ios (start bridge), wa-alt (alternatives)"
 echo "Start with: bstart"
