@@ -7,10 +7,6 @@
 - **Mode**: execution
 
 ### Working Memory (3/7 items)
-- Send work update to Dr. Ekren (dci-analysis)...
-- Reply to Harshal...
-- Validate job_dread_mvp idea from claude_web...
-
 ### Today's Tasks
 
 
@@ -23,7 +19,6 @@ save: brain-save
 
 ### Active Entities
 - claude_web: AI agent, suggested job_dread_mvp
-- harshal: needs reply
 
 ---
 **Note**: This is a smart-filtered context. For full context, run: `brain-load`
