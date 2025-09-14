@@ -138,7 +138,7 @@ class SimpleBrain:
         
         return True
     
-    def search(self, query: str, threshold: float = 0.75) -> List[Dict]:
+    def search(self, query: str, threshold: float = 0.75, limit: int = 20) -> List[Dict]:
         """
         Search memories - read-only, no conflicts
         """
@@ -149,8 +149,8 @@ class SimpleBrain:
                 FROM memories
                 WHERE content LIKE ?
                 ORDER BY importance DESC, timestamp DESC
-                LIMIT 20
-            ''', (f'%{query}%',)).fetchall()
+                LIMIT ?
+            ''', (f'%{query}%', limit)).fetchall()
         
         # Convert to dicts and calculate simple relevance score
         scored_results = []

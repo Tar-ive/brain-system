@@ -6,6 +6,8 @@ Built specifically to prevent project abandonment
 
 import json
 import os
+import fcntl
+import threading
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List
@@ -17,17 +19,28 @@ class GoalKeeper:
         self.goals_file = self.brain_dir / "active_goals.json"
         self.wins_file = self.brain_dir / "wins_log.json"
         self.commitment_file = self.brain_dir / "commitment.json"
-        
+
+        # Thread safety
+        self._file_lock = threading.Lock()
+
         # Load or initialize
         self.goals = self._load_goals()
         self.wins = self._load_wins()
         self.commitment = self._load_commitment()
     
     def _load_goals(self) -> Dict:
-        """Load active goals"""
+        """Load active goals with file locking"""
         if self.goals_file.exists():
-            with open(self.goals_file) as f:
-                return json.load(f)
+            try:
+                with open(self.goals_file) as f:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                    data = json.load(f)
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    return data
+            except (json.JSONDecodeError, IOError):
+                # If corrupted, return default
+                pass
+
         return {
             "brain_system": {
                 "started": datetime.now().isoformat(),
@@ -42,17 +55,32 @@ class GoalKeeper:
         }
     
     def _load_wins(self) -> List:
-        """Load wins history for dopamine tracking"""
+        """Load wins history for dopamine tracking with file locking"""
         if self.wins_file.exists():
-            with open(self.wins_file) as f:
-                return json.load(f)
+            try:
+                with open(self.wins_file) as f:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                    data = json.load(f)
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    return data
+            except (json.JSONDecodeError, IOError):
+                # If corrupted, return empty list
+                pass
         return []
     
     def _load_commitment(self) -> Dict:
-        """Load commitment contract"""
+        """Load commitment contract with file locking"""
         if self.commitment_file.exists():
-            with open(self.commitment_file) as f:
-                return json.load(f)
+            try:
+                with open(self.commitment_file) as f:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                    data = json.load(f)
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+                    return data
+            except (json.JSONDecodeError, IOError):
+                # If corrupted, return default
+                pass
+
         return {
             "brain_project": {
                 "promise": "I will NOT abandon this project when things break",
@@ -194,7 +222,7 @@ Quick fixes to try:
             
             report.append(f"\n{status_emoji} {project.upper()}")
             report.append(f"   Days committed: {days}")
-            report.append(f"   Excitement: {'🔥' * data['excitement_level']}")
+            report.append(f"   Excitement: {'🔥' * int(data['excitement_level'])}")
             report.append(f"   Last win: {last_win_days} days ago")
             
             if data["blockers"]:
@@ -227,12 +255,20 @@ Quick fixes to try:
         return 999
     
     def _save_goals(self):
-        with open(self.goals_file, 'w') as f:
-            json.dump(self.goals, f, indent=2)
-    
+        """Thread-safe save of goals with file locking"""
+        with self._file_lock:
+            with open(self.goals_file, 'w') as f:
+                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                json.dump(self.goals, f, indent=2)
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+
     def _save_wins(self):
-        with open(self.wins_file, 'w') as f:
-            json.dump(self.wins, f, indent=2)
+        """Thread-safe save of wins with file locking"""
+        with self._file_lock:
+            with open(self.wins_file, 'w') as f:
+                fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+                json.dump(self.wins, f, indent=2)
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
     
     def get_next_action(self, project: str = "brain_system"):
         """What should I do next?"""
