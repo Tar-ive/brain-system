@@ -25,9 +25,8 @@ class SimpleBrain:
         self.sessions_dir.mkdir(exist_ok=True)
         
         # Get or create session ID
-        self.session_id = os.environ.get('CLAUDE_SESSION_ID', self._generate_session_id())
-        self.session_dir = self.sessions_dir / self.session_id
-        self.session_dir.mkdir(exist_ok=True)
+        self._session_id = os.environ.get('CLAUDE_SESSION_ID', self._generate_session_id())
+        self._update_session_dir()
         
         # Initialize search index
         self._init_search_index()
@@ -36,11 +35,32 @@ class SimpleBrain:
         """Generate unique session ID from PID and timestamp"""
         unique = f"{os.getpid()}_{time.time()}"
         return hashlib.md5(unique.encode()).hexdigest()[:8]
+
+    @property
+    def session_id(self) -> str:
+        """Get current session ID"""
+        return self._session_id
+
+    @session_id.setter
+    def session_id(self, value: str):
+        """Set session ID and update session directory"""
+        self._session_id = value
+        self._update_session_dir()
+
+    def _update_session_dir(self):
+        """Update session directory based on current session ID"""
+        self.session_dir = self.sessions_dir / self._session_id
+        self.session_dir.mkdir(exist_ok=True)
     
     def _init_search_index(self):
         """Initialize SQLite for fast searching (read-heavy, write-light)"""
+        import threading
         self.index_db = self.brain_dir / "search.db"
         self.conn = sqlite3.connect(str(self.index_db), check_same_thread=False)
+        # Enable WAL mode for better concurrent access
+        self.conn.execute("PRAGMA journal_mode=WAL")
+        # Add a lock for thread safety
+        self._db_lock = threading.Lock()
         self.conn.execute('''
             CREATE TABLE IF NOT EXISTS memories (
                 timestamp TEXT,
@@ -72,12 +92,15 @@ class SimpleBrain:
         
         # 2. Update session-specific working memory (7 items max)
         session_memory = self.session_dir / "working_memory.json"
-        
+
         working_memory = []
-        if session_memory.exists():
-            with open(session_memory) as f:
-                working_memory = json.load(f)
-        
+        if session_memory.exists() and session_memory.stat().st_size > 0:
+            try:
+                with open(session_memory) as f:
+                    working_memory = json.load(f)
+            except (json.JSONDecodeError, IOError):
+                working_memory = []
+
         # Add new item
         working_memory.append({
             'timestamp': timestamp,
@@ -85,20 +108,26 @@ class SimpleBrain:
             'importance': importance,
             'project': project
         })
-        
+
         # Keep only 7 most important/recent items
         working_memory.sort(key=lambda x: (x['importance'], x['timestamp']), reverse=True)
         working_memory = working_memory[:7]
-        
+
+        # Use file locking for working memory as well
         with open(session_memory, 'w') as f:
-            json.dump(working_memory, f, indent=2)
-        
-        # 3. Update search index (async would be better, but keeping it simple)
-        self.conn.execute(
-            'INSERT INTO memories VALUES (?, ?, ?, ?, ?)',
-            (timestamp, self.session_id, content, importance, project)
-        )
-        self.conn.commit()
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            try:
+                json.dump(working_memory, f, indent=2)
+            finally:
+                fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+
+        # 3. Update search index with thread safety
+        with self._db_lock:
+            self.conn.execute(
+                'INSERT INTO memories VALUES (?, ?, ?, ?, ?)',
+                (timestamp, self.session_id, content, importance, project)
+            )
+            self.conn.commit()
         
         # DEEP SYNC TO OBSIDIAN
         try:
@@ -114,13 +143,14 @@ class SimpleBrain:
         Search memories - read-only, no conflicts
         """
         # Simple SQL search (could enhance with FTS5)
-        results = self.conn.execute('''
-            SELECT timestamp, session_id, content, importance, project
-            FROM memories
-            WHERE content LIKE ?
-            ORDER BY importance DESC, timestamp DESC
-            LIMIT 20
-        ''', (f'%{query}%',)).fetchall()
+        with self._db_lock:
+            results = self.conn.execute('''
+                SELECT timestamp, session_id, content, importance, project
+                FROM memories
+                WHERE content LIKE ?
+                ORDER BY importance DESC, timestamp DESC
+                LIMIT 20
+            ''', (f'%{query}%',)).fetchall()
         
         # Convert to dicts and calculate simple relevance score
         scored_results = []
@@ -148,9 +178,12 @@ class SimpleBrain:
     def get_working_memory(self) -> List[Dict]:
         """Get current session's working memory"""
         session_memory = self.session_dir / "working_memory.json"
-        if session_memory.exists():
-            with open(session_memory) as f:
-                return json.load(f)
+        if session_memory.exists() and session_memory.stat().st_size > 0:
+            try:
+                with open(session_memory) as f:
+                    return json.load(f)
+            except (json.JSONDecodeError, IOError):
+                return []
         return []
     
     def get_context(self, include_other_sessions: bool = True) -> Dict:
