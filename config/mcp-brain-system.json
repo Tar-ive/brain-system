@@ -1,0 +1,108 @@
+{
+  "mcpServers": {
+    "reddit": {
+      "command": "/opt/homebrew/bin/uv",
+      "args": [
+        "--directory",
+        "/Users/tarive/brain-mcp-servers/reddit-mcp",
+        "run",
+        "server.py"
+      ],
+      "env": {
+        "REDDIT_CLIENT_ID": "${REDDIT_CLIENT_ID}",
+        "REDDIT_CLIENT_SECRET": "${REDDIT_CLIENT_SECRET}",
+        "REDDIT_USERNAME": "${REDDIT_USERNAME}",
+        "REDDIT_PASSWORD": "${REDDIT_PASSWORD}"
+      }
+    },
+    "hackernews": {
+      "command": "node",
+      "args": ["/Users/tarive/brain-mcp-servers/mcp-claude-hackernews/build/index.js"]
+    },
+    "discord": {
+      "command": "node",
+      "args": ["/Users/tarive/brain-mcp-servers/discordmcp/build/index.js"],
+      "env": {
+        "DISCORD_TOKEN": "${DISCORD_TOKEN}"
+      }
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}",
+        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "3",
+        "FIRECRAWL_RETRY_INITIAL_DELAY": "1000",
+        "FIRECRAWL_RETRY_MAX_DELAY": "10000",
+        "FIRECRAWL_RETRY_BACKOFF_FACTOR": "2",
+        "FIRECRAWL_CREDIT_WARNING_THRESHOLD": "1000",
+        "FIRECRAWL_CREDIT_CRITICAL_THRESHOLD": "100"
+      }
+    },
+    "basic-memory": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "basic-memory",
+        "mcp"
+      ],
+      "env": {}
+    },
+    "imessage": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/Users/tarive/Desktop/MCP-tests/claude-extensions-backup/ant.dir.ant.anthropic.imessage/server/index.js"
+      ],
+      "env": {}
+    },
+    "gmail": {
+      "command": "node",
+      "args": [
+        "/Users/tarive/brain/gmail-mcp/dist/index.js"
+      ],
+      "env": {
+        "GMAIL_PLAYGROUND_TOKEN_PATH": "/Users/tarive/brain/config/tokens/gmail_playground_token.txt"
+      }
+    },
+    "memory-fallback": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {}
+    },
+    "splitwise": {
+      "type": "http",
+      "url": "https://mcp-gateway.freengers.com/remote/gateway/splitwise/mcp",
+      "headers": {
+        "Authorization": "Bearer XYHMF4ipv6NmllLfWoZLQL4ukFoWkEfe0dkqmeca"
+      }
+    },
+    "whatsapp": {
+      "type": "stdio",
+      "command": "/Users/tarive/.venv/bin/python3",
+      "args": [
+        "/Users/tarive/brain-poc/integrations/whatsapp-mcp/whatsapp-mcp-server/main.py"
+      ],
+      "env": {
+        "WHATSAPP_BRIDGE_URL": "http://localhost:8080"
+      }
+    },
+    "gmail-arcade": {
+      "type": "stdio",
+      "command": "python3",
+      "args": [
+        "-m",
+        "gmail_arcade_mcp.server"
+      ],
+      "cwd": "/Users/tarive/brain-mcp-servers/gmail-arcade",
+      "env": {
+        "PYTHONPATH": "/Users/tarive/brain-mcp-servers/gmail-arcade/src",
+        "ARCADE_API_KEY": "${ARCADE_API_KEY}"
+      }
+    }
+  }
+}
