@@ -1,0 +1,41 @@
+2025-09-16 20:42:39,929 DEBUG    root            Running [gcloud] with arguments: [-v: "None"]
+2025-09-16 20:42:39,947 DEBUG    root            Loaded Command Group: ['gcloud', 'version']
+2025-09-16 20:42:39,948 DEBUG    root            Running [gcloud.version] with arguments: []
+2025-09-16 20:42:39,955 INFO     root            Display format: "flattened[no-pad,separator=" "]"
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___ Google Cloud SDK
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___ 387.0.0
+
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___ alpha
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,955 INFO     ___FILE_ONLY___ 2022.05.20
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ beta
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 2022.05.20
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ bq
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 2.0.74
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ bundled-python3-unix
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 3.9.12
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ core
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 2022.05.20
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ gsutil
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 5.10
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ minikube
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 1.25.2
+
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ skaffold
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___  
+2025-09-16 20:42:39,956 INFO     ___FILE_ONLY___ 1.38.0
+
+2025-09-16 20:42:39,957 DEBUG    root            SDK update checks are disabled.

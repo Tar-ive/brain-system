@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Check if GitHub CLI is installed",
+    "status": "completed",
+    "activeForm": "Checking GitHub CLI installation"
+  },
+  {
+    "content": "Install GitHub CLI if not present",
+    "status": "completed",
+    "activeForm": "Installing GitHub CLI"
+  },
+  {
+    "content": "Authenticate with GitHub",
+    "status": "in_progress",
+    "activeForm": "Authenticating with GitHub"
+  },
+  {
+    "content": "Test GitHub connection",
+    "status": "pending",
+    "activeForm": "Testing GitHub connection"
+  },
+  {
+    "content": "Configure git to use GitHub credentials",
+    "status": "pending",
+    "activeForm": "Configuring git credentials"
+  }
+]

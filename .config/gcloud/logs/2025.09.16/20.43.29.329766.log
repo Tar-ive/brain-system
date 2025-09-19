@@ -1,0 +1,54 @@
+2025-09-16 20:43:29,385 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2025-09-16 20:43:29,387 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus']
+2025-09-16 20:43:29,416 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus', 'list']
+2025-09-16 20:43:29,422 DEBUG    root            Running [gcloud.compute.tpus.list] with arguments: [--zone: "us-central2-a"]
+2025-09-16 20:43:29,431 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:43:29,432 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:43:29,433 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:43:29,434 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:43:29,435 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:43:29,648 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:43:29,649 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:43:29,650 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:43:29,650 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:43:29,651 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:43:29,654 INFO     root            Display format: "table(
+name.basename(),
+name.segment(-3):label=ZONE,
+acceleratorType.basename():label=ACCELERATOR_TYPE,
+network.basename():label=NETWORK,
+cidrBlock:label=RANGE,
+state:label=STATUS
+)
+"
+2025-09-16 20:43:29,655 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): tpu.googleapis.com:443
+2025-09-16 20:43:29,770 DEBUG    urllib3.connectionpool https://tpu.googleapis.com:443 "GET /v1/projects/tpu-optimization/locations/us-central2-a/nodes?alt=json HTTP/1.1" 403 None
+2025-09-16 20:43:29,771 DEBUG    root            (gcloud.compute.tpus.list) PERMISSION_DENIED: Location us-central2-a is not found or access is unauthorized.
+Traceback (most recent call last):
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/cli.py", line 987, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/backend.py", line 810, in Run
+    resources = display.Displayer(command_instance, args, resources,
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/display.py", line 483, in Display
+    self._printer.Print(self._resources)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/core/resource/resource_printer_base.py", line 298, in Print
+    for resource in resources:
+  File "/snap/google-cloud-cli/38/lib/third_party/apitools/base/py/list_pager.py", line 120, in YieldFromList
+    response = getattr(service, method)(request,
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/third_party/apis/tpu/v1/tpu_v1_client.py", line 214, in List
+    return self._RunMethod(
+  File "/snap/google-cloud-cli/38/lib/third_party/apitools/base/py/base_api.py", line 737, in _RunMethod
+    return self.ProcessHttpResponse(method_config, http_response, request)
+  File "/snap/google-cloud-cli/38/lib/third_party/apitools/base/py/base_api.py", line 743, in ProcessHttpResponse
+    self.__ProcessHttpResponse(method_config, http_response, request))
+  File "/snap/google-cloud-cli/38/lib/third_party/apitools/base/py/base_api.py", line 609, in __ProcessHttpResponse
+    raise exceptions.HttpError.FromResponse(
+apitools.base.py.exceptions.HttpForbiddenError: HttpError accessing <https://tpu.googleapis.com/v1/projects/tpu-optimization/locations/us-central2-a/nodes?alt=json>: response: <{'vary': 'Origin, X-Origin, Referer', 'content-type': 'application/json; charset=UTF-8', 'content-encoding': 'gzip', 'date': 'Tue, 16 Sep 2025 20:43:29 GMT', 'server': 'ESF', 'x-xss-protection': '0', 'x-frame-options': 'SAMEORIGIN', 'x-content-type-options': 'nosniff', 'transfer-encoding': 'chunked', 'status': 403}>, content <{
+  "error": {
+    "code": 403,
+    "message": "Location us-central2-a is not found or access is unauthorized.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+>
+2025-09-16 20:43:29,772 ERROR    root            (gcloud.compute.tpus.list) PERMISSION_DENIED: Location us-central2-a is not found or access is unauthorized.

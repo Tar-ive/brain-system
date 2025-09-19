@@ -1,0 +1,931 @@
+2025-09-16 20:42:57,594 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2025-09-16 20:42:57,615 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'zones']
+2025-09-16 20:42:57,761 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'zones', 'list']
+2025-09-16 20:42:57,765 DEBUG    root            Running [gcloud.compute.zones.list] with arguments: []
+2025-09-16 20:42:57,810 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:42:57,811 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:42:57,812 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:42:57,813 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:42:57,814 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:42:57,829 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:42:57,830 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:42:57,831 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:42:57,832 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:42:57,833 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:42:58,220 INFO     root            Display format: "        table(name,
+              region.basename(),
+              status():label=STATUS,
+              maintenanceWindows.next_maintenance():label=NEXT_MAINTENANCE,
+              deprecated.deleted:label=TURNDOWN_DATE
+        )"
+2025-09-16 20:42:58,223 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): compute.googleapis.com:443
+2025-09-16 20:42:58,604 DEBUG    urllib3.connectionpool https://compute.googleapis.com:443 "POST /batch/compute/v1 HTTP/1.1" 200 None
+2025-09-16 20:42:58,637 INFO     root            cache collection=compute.zones api_version=v1 params=['project', 'zone']
+2025-09-16 20:42:58,683 INFO     ___FILE_ONLY___ NAME
+2025-09-16 20:42:58,683 INFO     ___FILE_ONLY___                        
+2025-09-16 20:42:58,683 INFO     ___FILE_ONLY___ REGION
+2025-09-16 20:42:58,683 INFO     ___FILE_ONLY___                    
+2025-09-16 20:42:58,683 INFO     ___FILE_ONLY___ STATUS
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ NEXT_MAINTENANCE
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ TURNDOWN_DATE
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1-b
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1-c
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1-d
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ us-east1
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,684 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4-c
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4-b
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4-a
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-east4
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___ us-central1-c
+2025-09-16 20:42:58,685 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1-a
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1-f
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1-b
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central1
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,686 INFO     ___FILE_ONLY___ us-central2-b
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-central2
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1-b
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1-c
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1-a
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ us-west1
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,687 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4-a
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4-b
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4-c
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west4
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west1-b
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,688 INFO     ___FILE_ONLY___ europe-west1
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west1-d
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west1
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west1-c
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west1
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west3-c
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ europe-west3
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,689 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west3-a
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west3
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west3-b
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west3
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west2-c
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west2
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west2-b
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ europe-west2
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,690 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ europe-west2-a
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ europe-west2
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1-b
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1-a
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1-c
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,691 INFO     ___FILE_ONLY___ asia-east1
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1-b
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1-a
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1-c
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-southeast1
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,692 INFO     ___FILE_ONLY___ asia-northeast1-b
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-northeast1
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-northeast1-c
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-northeast1
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-northeast1-a
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-northeast1
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-south1-c
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___ asia-south1
+2025-09-16 20:42:58,693 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ asia-south1-b
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ asia-south1
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ asia-south1-a
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ asia-south1
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ australia-southeast1-b
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ australia-southeast1
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___ australia-southeast1-c
+2025-09-16 20:42:58,694 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ australia-southeast1
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ australia-southeast1-a
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ australia-southeast1
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ southamerica-east1-b
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ southamerica-east1
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ southamerica-east1-c
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ southamerica-east1
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,695 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ southamerica-east1-a
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ southamerica-east1
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1-a
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1-b
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1-c
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ africa-south1
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,696 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2-a
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2-b
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2-c
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-east2
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___                
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___ asia-northeast2-a
+2025-09-16 20:42:58,697 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast2
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast2-b
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast2
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast2-c
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast2
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast3-a
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ asia-northeast3
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,698 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-northeast3-b
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-northeast3
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-northeast3-c
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-northeast3
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-south2-a
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-south2
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-south2-b
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___ asia-south2
+2025-09-16 20:42:58,699 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-south2-c
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-south2
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-southeast2-a
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-southeast2
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-southeast2-b
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-southeast2
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___ asia-southeast2-c
+2025-09-16 20:42:58,700 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ asia-southeast2
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2-a
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2-b
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2-c
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ australia-southeast2
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___      
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,701 INFO     ___FILE_ONLY___ europe-central2-a
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-central2
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-central2-b
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-central2
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-central2-c
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-central2
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___           
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-north1-a
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___ europe-north1
+2025-09-16 20:42:58,702 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north1-b
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north1
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north1-c
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north1
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north2-a
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north2
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___ europe-north2-b
+2025-09-16 20:42:58,703 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-north2
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-north2-c
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-north2
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-southwest1-a
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-southwest1
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-southwest1-b
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-southwest1
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,704 INFO     ___FILE_ONLY___ europe-southwest1-c
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-southwest1
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___         
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10-a
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10-b
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10-c
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ europe-west10
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,705 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12-a
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12-b
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12-c
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west12
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___             
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west6-a
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,706 INFO     ___FILE_ONLY___ europe-west6
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west6-b
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west6
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west6-c
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west6
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west8-a
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west8
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,707 INFO     ___FILE_ONLY___ europe-west8-b
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west8
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west8-c
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west8
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west9-a
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west9
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west9-b
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ europe-west9
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,708 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ europe-west9-c
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ europe-west9
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___              
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1-a
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1-b
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1-c
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,709 INFO     ___FILE_ONLY___ me-central1
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2-a
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2-b
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2-c
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-central2
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___               
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,710 INFO     ___FILE_ONLY___ me-west1-a
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ me-west1
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ me-west1-b
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ me-west1
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ me-west1-c
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ me-west1
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ northamerica-northeast1-a
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ northamerica-northeast1
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,711 INFO     ___FILE_ONLY___ northamerica-northeast1-b
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast1
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast1-c
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast1
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast2-a
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast2
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast2-b
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast2
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___ northamerica-northeast2-c
+2025-09-16 20:42:58,712 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-northeast2
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___   
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1-a
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1-b
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1-c
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ northamerica-south1
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___       
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,713 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1-a
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1-b
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1-c
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ southamerica-west1
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___        
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ us-east5-a
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,714 INFO     ___FILE_ONLY___ us-east5
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-east5-b
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-east5
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-east5-c
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-east5
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-south1-a
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-south1
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,715 INFO     ___FILE_ONLY___ us-south1-b
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-south1
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-south1-c
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-south1
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                 
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-west2-a
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-west2
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-west2-b
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ us-west2
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,716 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west2-c
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west2
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3-a
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3-b
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3-c
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___ us-west3
+2025-09-16 20:42:58,717 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4-a
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4-b
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4-c
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ us-west4
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___                  
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ UP
+2025-09-16 20:42:58,718 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:42:58,719 DEBUG    root            SDK update checks are disabled.

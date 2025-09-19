@@ -1,0 +1,13 @@
+2025-09-16 20:43:12,472 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2025-09-16 20:43:12,474 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus']
+2025-09-16 20:43:12,504 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus', 'list']
+2025-09-16 20:43:12,508 DEBUG    root            Loaded Command Group: ['gcloud', 'alpha', 'compute']
+2025-09-16 20:43:12,510 DEBUG    root            Loaded Command Group: ['gcloud', 'alpha', 'compute', 'tpus']
+2025-09-16 20:43:12,512 DEBUG    root            Loaded Command Group: ['gcloud', 'alpha', 'compute', 'tpus', 'list']
+2025-09-16 20:43:12,515 DEBUG    root            Loaded Command Group: ['gcloud', 'beta', 'compute']
+2025-09-16 20:43:12,516 DEBUG    root            Loaded Command Group: ['gcloud', 'beta', 'compute', 'tpus']
+2025-09-16 20:43:12,518 DEBUG    root            Loaded Command Group: ['gcloud', 'beta', 'compute', 'tpus', 'list']
+2025-09-16 20:43:12,521 ERROR    root            (gcloud.compute.tpus.list) unrecognized arguments: --region=us-central1 (did you mean '--uri'?) 
+
+To search the help text of gcloud commands, run:
+  gcloud help -- SEARCH_TERMS

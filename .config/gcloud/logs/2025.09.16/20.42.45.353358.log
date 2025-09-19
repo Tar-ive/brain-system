@@ -1,0 +1,63 @@
+2025-09-16 20:42:45,545 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2025-09-16 20:42:45,568 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus']
+2025-09-16 20:42:45,617 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus', 'list']
+2025-09-16 20:42:45,624 DEBUG    root            Running [gcloud.compute.tpus.list] with arguments: []
+2025-09-16 20:42:45,625 DEBUG    root            (gcloud.compute.tpus.list) Error parsing [zone].
+The [location] resource is not properly specified.
+Failed to find attribute [zone]. The attribute can be set in the following ways: 
+- provide the argument `--zone` on the command line
+- set the property `compute/zone`
+Traceback (most recent call last):
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/concepts.py", line 452, in Initialize
+    deps_lib.Get(
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/deps.py", line 311, in Get
+    return GetFromFallthroughs(fallthroughs, parsed_args,
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/deps.py", line 341, in GetFromFallthroughs
+    raise AttributeNotFoundError(
+googlecloudsdk.calliope.concepts.deps.AttributeNotFoundError: Failed to find attribute [zone]. The attribute can be set in the following ways: 
+- provide the argument `--zone` on the command line
+- set the property `compute/zone`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/handlers.py", line 87, in Parse
+    return self.parse(self.arg_getter())
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/command_lib/util/concepts/info_holders.py", line 400, in Parse
+    result = self.concept_spec.Parse(self.attribute_to_args_map,
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/concepts.py", line 487, in Parse
+    return self.Initialize(
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/concepts.py", line 457, in Initialize
+    raise InitializationError(
+googlecloudsdk.calliope.concepts.concepts.InitializationError: The [location] resource is not properly specified.
+Failed to find attribute [zone]. The attribute can be set in the following ways: 
+- provide the argument `--zone` on the command line
+- set the property `compute/zone`
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/cli.py", line 987, in Execute
+    resources = calliope_command.Run(cli=self, args=args)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/backend.py", line 809, in Run
+    resources = command_instance.Run(args)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/command_lib/util/apis/yaml_command_translator.py", line 739, in Run
+    unused_ref, response = self._CommonRun(args)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/command_lib/util/apis/yaml_command_translator.py", line 374, in _CommonRun
+    ref = self.arg_generator.GetRequestResourceRef(args)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/command_lib/util/apis/arg_marshalling.py", line 210, in GetRequestResourceRef
+    return self._ParseResourceArg(namespace)
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/command_lib/util/apis/arg_marshalling.py", line 331, in _ParseResourceArg
+    result = arg_utils.GetFromNamespace(
+  File "/snap/google-cloud-cli/38/lib/googlecloudsdk/calliope/concepts/handlers.py", line 90, in Parse
+    raise ParseError(name, six.text_type(e))
+googlecloudsdk.calliope.concepts.handlers.ParseError: Error parsing [zone].
+The [location] resource is not properly specified.
+Failed to find attribute [zone]. The attribute can be set in the following ways: 
+- provide the argument `--zone` on the command line
+- set the property `compute/zone`
+2025-09-16 20:42:45,626 ERROR    root            (gcloud.compute.tpus.list) Error parsing [zone].
+The [location] resource is not properly specified.
+Failed to find attribute [zone]. The attribute can be set in the following ways: 
+- provide the argument `--zone` on the command line
+- set the property `compute/zone`

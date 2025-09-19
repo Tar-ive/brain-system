@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "Setting up rclone for Google Drive (headless mode)"
+echo "===================================================="
+echo ""
+echo "Since we're on a headless VM, you'll need to:"
+echo "1. Run 'rclone config' and choose:"
+echo "   - n) New remote"
+echo "   - Name: gdrive"
+echo "   - Storage: 18 (Google Drive)"
+echo "   - client_id: (leave blank or use your own)"
+echo "   - client_secret: (leave blank or use your own)"
+echo "   - scope: 1 (Full access)"
+echo "   - service_account_file: (leave blank)"
+echo "   - Advanced config: n"
+echo ""
+echo "2. For authentication, since we can't open a browser here:"
+echo "   - Choose: n (for headless)"
+echo "   - It will give you a URL to open on your LOCAL machine"
+echo "   - Copy that URL, open it in your browser"
+echo "   - Authorize rclone"
+echo "   - Copy the verification code back here"
+echo ""
+echo "Let's start the configuration:"
+echo ""
+
+rclone config

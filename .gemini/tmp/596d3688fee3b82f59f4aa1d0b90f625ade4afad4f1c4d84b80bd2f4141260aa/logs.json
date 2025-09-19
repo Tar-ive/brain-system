@@ -1,0 +1,23 @@
+[
+  {
+    "sessionId": "38d857b1-d6e1-40bd-9008-9cdef5fb73d2",
+    "messageId": 0,
+    "type": "user",
+    "message": "we are in a tpu sandbox environemnt, check and understand the config",
+    "timestamp": "2025-09-16T20:40:32.002Z"
+  },
+  {
+    "sessionId": "38d857b1-d6e1-40bd-9008-9cdef5fb73d2",
+    "messageId": 1,
+    "type": "user",
+    "message": "we are in us-central2",
+    "timestamp": "2025-09-16T20:43:24.518Z"
+  },
+  {
+    "sessionId": "38d857b1-d6e1-40bd-9008-9cdef5fb73d2",
+    "messageId": 2,
+    "type": "user",
+    "message": "run \"claude --dangerously-skip-permissions\" in bash mode",
+    "timestamp": "2025-09-16T23:06:44.123Z"
+  }
+]

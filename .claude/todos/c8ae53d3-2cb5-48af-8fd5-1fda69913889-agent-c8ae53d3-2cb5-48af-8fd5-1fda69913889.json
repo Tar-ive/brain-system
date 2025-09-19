@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Remove remaining large llvmlite.so file from git tracking",
+    "status": "completed",
+    "activeForm": "Removed large llvmlite.so file from git tracking"
+  },
+  {
+    "content": "Stage all remaining changes",
+    "status": "in_progress",
+    "activeForm": "Staging all remaining changes"
+  },
+  {
+    "content": "Attempt final GitHub push",
+    "status": "pending",
+    "activeForm": "Attempting final GitHub push"
+  }
+]

@@ -1,0 +1,131 @@
+2025-09-16 20:43:40,140 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2025-09-16 20:43:40,142 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus']
+2025-09-16 20:43:40,166 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'tpus', 'describe']
+2025-09-16 20:43:40,172 DEBUG    root            Running [gcloud.compute.tpus.describe] with arguments: [--zone: "us-central2-b", TPU: "explore-tpu"]
+2025-09-16 20:43:40,181 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:43:40,182 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:43:40,183 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:43:40,184 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:43:40,185 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:43:40,204 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true
+2025-09-16 20:43:40,204 DEBUG    urllib3.connectionpool Starting new HTTP connection (1): metadata.google.internal:80
+2025-09-16 20:43:40,205 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/?recursive=true HTTP/1.1" 200 189
+2025-09-16 20:43:40,206 DEBUG    google.auth.transport.requests Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token
+2025-09-16 20:43:40,207 DEBUG    urllib3.connectionpool http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/50684168762-compute@developer.gserviceaccount.com/token HTTP/1.1" 200 871
+2025-09-16 20:43:40,210 DEBUG    urllib3.connectionpool Starting new HTTPS connection (1): tpu.googleapis.com:443
+2025-09-16 20:43:40,278 DEBUG    urllib3.connectionpool https://tpu.googleapis.com:443 "GET /v1/projects/tpu-optimization/locations/us-central2-b/nodes/explore-tpu?alt=json HTTP/1.1" 200 None
+2025-09-16 20:43:40,280 INFO     root            Display format: "default"
+2025-09-16 20:43:40,281 INFO     ___FILE_ONLY___ acceleratorType
+2025-09-16 20:43:40,281 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,282 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,282 INFO     ___FILE_ONLY___ v4-8
+2025-09-16 20:43:40,282 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,282 INFO     ___FILE_ONLY___ cidrBlock
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___ 10.130.0.0/20
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___ createTime
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,283 INFO     ___FILE_ONLY___  '
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ 2025-09-16T06:30:30.508170979Z
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ '
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ health
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ HEALTHY
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ healthDescription
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ The
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ TPU
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ had
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___ a
+2025-09-16 20:43:40,284 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ maintenance
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ event
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ at
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ 2025-09-16T06:34:16.515268129Z
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ ipAddress
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ 10.130.0.3
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ name
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,285 INFO     ___FILE_ONLY___ projects/tpu-optimization/locations/us-central2-b/nodes/explore-tpu
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ network
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ projects/tpu-optimization/global/networks/default
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ networkEndpoints
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ -
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ ipAddress
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ 10.130.0.3
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,286 INFO     ___FILE_ONLY___   
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ port
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ 8470
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ port
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___  '
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ 8470
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ '
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ schedulingConfig
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___  {
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ }
+2025-09-16 20:43:40,287 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ serviceAccount
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ 50684168762-compute@developer.gserviceaccount.com
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ state
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ READY
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ tensorflowVersion
+2025-09-16 20:43:40,288 INFO     ___FILE_ONLY___ :
+2025-09-16 20:43:40,289 INFO     ___FILE_ONLY___  
+2025-09-16 20:43:40,289 INFO     ___FILE_ONLY___ tpu-vm-base
+2025-09-16 20:43:40,289 INFO     ___FILE_ONLY___ 
+
+2025-09-16 20:43:40,289 DEBUG    root            SDK update checks are disabled.
