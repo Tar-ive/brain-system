@@ -1,0 +1,391 @@
+name: Pull Request Testing
+
+on:
+  pull_request:
+    branches: [ master, main, develop ]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+env:
+  PYTHON_VERSION: '3.13'
+  NODE_VERSION: '20'
+
+jobs:
+  changes-detection:
+    runs-on: ubuntu-latest
+    outputs:
+      core-changed: ${{ steps.changes.outputs.core }}
+      tests-changed: ${{ steps.changes.outputs.tests }}
+      mcp-changed: ${{ steps.changes.outputs.mcp }}
+      ci-changed: ${{ steps.changes.outputs.ci }}
+      docs-changed: ${{ steps.changes.outputs.docs }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          core:
+            - 'core/**'
+          tests:
+            - 'testing/**'
+          mcp:
+            - 'mcp-servers/**'
+            - 'cli/**'
+          ci:
+            - '.github/workflows/**'
+          docs:
+            - '*.md'
+            - 'docs/**'
+
+  quick-validation:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff black mypy
+
+    - name: Quick lint check
+      run: |
+        ruff check core/ --output-format=github
+        black --check core/ --diff
+
+    - name: Quick type check
+      run: |
+        mypy core/ --ignore-missing-imports || true
+
+  fast-unit-tests:
+    runs-on: ubuntu-latest
+    needs: [changes-detection, quick-validation]
+    if: needs.changes-detection.outputs.core == 'true' || needs.changes-detection.outputs.tests == 'true'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Install test dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-xdist pytest-timeout
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Run fast unit tests
+      timeout-minutes: 10
+      run: |
+        cd testing
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/../core"
+        python -m pytest tests/unit/ \
+          -x \
+          --tb=short \
+          --timeout=180 \
+          -n auto \
+          --dist=worksteal \
+          --junitxml=../test-results/pr-unit-tests.xml
+
+    - name: Upload unit test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: pr-unit-test-results
+        path: test-results/
+
+  critical-integration-tests:
+    runs-on: ubuntu-latest
+    needs: [changes-detection, fast-unit-tests]
+    if: needs.changes-detection.outputs.core == 'true' || needs.changes-detection.outputs.mcp == 'true'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-timeout
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Setup critical MCP servers
+      run: |
+        npm install -g basic-memory@latest || echo "Basic memory installation skipped"
+
+    - name: Run critical integration tests
+      timeout-minutes: 20
+      run: |
+        cd testing
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/../core"
+
+        # Run only critical integration tests
+        python -m pytest tests/integration/test_mcp_coordination.py::TestBasicMemoryMCPIntegration::test_basic_memory_mcp_connection_health \
+          tests/integration/test_mcp_coordination.py::TestMCPServerHealthMonitoring::test_mcp_configuration_validation \
+          --junitxml=../test-results/pr-critical-integration.xml \
+          --timeout=600 \
+          --tb=short \
+          -v
+
+    - name: Upload integration test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: pr-integration-test-results
+        path: test-results/
+
+  performance-regression-check:
+    runs-on: ubuntu-latest
+    needs: [changes-detection, fast-unit-tests]
+    if: needs.changes-detection.outputs.core == 'true'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-benchmark psutil
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Run performance regression tests
+      timeout-minutes: 15
+      run: |
+        cd testing
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/../core"
+
+        # Run lightweight performance tests
+        python -m pytest tests/performance/test_facebook_reliability_standards.py::TestFacebookReliabilityStandards::test_response_time_under_100ms \
+          tests/performance/test_facebook_reliability_standards.py::TestFacebookReliabilityStandards::test_memory_usage_efficiency \
+          --junitxml=../test-results/pr-performance-regression.xml \
+          --timeout=600 \
+          --tb=short \
+          -v
+
+    - name: Upload performance test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: pr-performance-test-results
+        path: test-results/
+
+  security-check:
+    runs-on: ubuntu-latest
+    needs: changes-detection
+    if: needs.changes-detection.outputs.core == 'true' || needs.changes-detection.outputs.mcp == 'true'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+
+    - name: Run security checks
+      run: |
+        # Check for common security issues
+        bandit -r core/ -ll || true
+
+        # Check for known vulnerabilities
+        safety check || true
+
+    - name: Scan for secrets
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: ${{ github.event.repository.default_branch }}
+        head: HEAD
+        extra_args: --debug --only-verified
+
+  documentation-check:
+    runs-on: ubuntu-latest
+    needs: changes-detection
+    if: needs.changes-detection.outputs.docs == 'true' || needs.changes-detection.outputs.core == 'true'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check documentation consistency
+      run: |
+        # Check that README files exist and are linked properly
+        echo "Checking documentation consistency..."
+
+        # Verify that code changes have corresponding documentation updates
+        if [ "${{ needs.changes-detection.outputs.core }}" == "true" ]; then
+          echo "Core changes detected - checking for documentation updates"
+          # Add specific documentation checks here
+        fi
+
+  pr-summary:
+    runs-on: ubuntu-latest
+    needs: [
+      changes-detection,
+      quick-validation,
+      fast-unit-tests,
+      critical-integration-tests,
+      performance-regression-check,
+      security-check,
+      documentation-check
+    ]
+    if: always()
+
+    steps:
+    - name: Download all test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: pr-test-results
+
+    - name: Generate PR test summary
+      run: |
+        echo "# 🧪 Pull Request Test Summary" > pr-summary.md
+        echo "" >> pr-summary.md
+        echo "**PR:** #${{ github.event.pull_request.number }}" >> pr-summary.md
+        echo "**Title:** ${{ github.event.pull_request.title }}" >> pr-summary.md
+        echo "**Author:** @${{ github.event.pull_request.user.login }}" >> pr-summary.md
+        echo "" >> pr-summary.md
+
+        # Analyze test results
+        echo "## Test Results" >> pr-summary.md
+
+        # Check unit tests
+        if [ -f pr-test-results/pr-unit-test-results/pr-unit-tests.xml ]; then
+          echo "✅ Unit tests completed" >> pr-summary.md
+        else
+          echo "❌ Unit tests failed or skipped" >> pr-summary.md
+        fi
+
+        # Check integration tests
+        if [ -f pr-test-results/pr-integration-test-results/pr-critical-integration.xml ]; then
+          echo "✅ Critical integration tests completed" >> pr-summary.md
+        else
+          echo "❌ Integration tests failed or skipped" >> pr-summary.md
+        fi
+
+        # Check performance tests
+        if [ -f pr-test-results/pr-performance-test-results/pr-performance-regression.xml ]; then
+          echo "✅ Performance regression check completed" >> pr-summary.md
+        else
+          echo "⚠️ Performance tests skipped or failed" >> pr-summary.md
+        fi
+
+        echo "" >> pr-summary.md
+        echo "## Changes Detected" >> pr-summary.md
+        echo "- Core changes: ${{ needs.changes-detection.outputs.core-changed }}" >> pr-summary.md
+        echo "- Test changes: ${{ needs.changes-detection.outputs.tests-changed }}" >> pr-summary.md
+        echo "- MCP changes: ${{ needs.changes-detection.outputs.mcp-changed }}" >> pr-summary.md
+        echo "- CI changes: ${{ needs.changes-detection.outputs.ci-changed }}" >> pr-summary.md
+        echo "- Documentation changes: ${{ needs.changes-detection.outputs.docs-changed }}" >> pr-summary.md
+
+        echo "" >> pr-summary.md
+        echo "**Test Execution Time:** $(date)" >> pr-summary.md
+
+    - name: Comment PR with test results
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const summary = fs.readFileSync('pr-summary.md', 'utf8');
+
+          // Find existing comment
+          const comments = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+
+          const botComment = comments.data.find(comment =>
+            comment.user.type === 'Bot' &&
+            comment.body.includes('Pull Request Test Summary')
+          );
+
+          if (botComment) {
+            // Update existing comment
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: botComment.id,
+              body: summary
+            });
+          } else {
+            // Create new comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: summary
+            });
+          }
+
+  auto-merge-check:
+    runs-on: ubuntu-latest
+    needs: [
+      fast-unit-tests,
+      critical-integration-tests,
+      performance-regression-check,
+      security-check
+    ]
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && success()
+
+    steps:
+    - name: Enable auto-merge for dependabot PRs
+      uses: actions/github-script@v7
+      with:
+        script: |
+          // Only auto-merge if all tests passed
+          await github.rest.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            event: 'APPROVE',
+            body: 'Auto-approving dependabot PR after successful tests'
+          });
+
+          await github.rest.pulls.merge({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            commit_title: 'Auto-merge dependabot PR',
+            merge_method: 'squash'
+          });

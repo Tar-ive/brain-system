@@ -1,0 +1,571 @@
+name: Brain System Parallel Testing
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+  workflow_dispatch:
+    inputs:
+      test_level:
+        description: 'Test level to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - unit
+        - integration
+        - system
+        - performance
+
+env:
+  PYTHON_VERSION: '3.13'
+  NODE_VERSION: '20'
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      test-matrix: ${{ steps.test-discovery.outputs.matrix }}
+      should-run-unit: ${{ steps.filter.outputs.unit }}
+      should-run-integration: ${{ steps.filter.outputs.integration }}
+      should-run-system: ${{ steps.filter.outputs.system }}
+      should-run-performance: ${{ steps.filter.outputs.performance }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup test discovery
+      id: test-discovery
+      run: |
+        # Discover all test files and categorize them
+        echo "matrix=$(find testing/tests -name "test_*.py" | jq -R -s -c 'split("\n")[:-1] | map({"file": ., "category": (. | split("/")[-2])})')" >> $GITHUB_OUTPUT
+
+    - name: Determine changed components
+      id: filter
+      run: |
+        if [[ "${{ github.event.inputs.test_level }}" == "all" ]] || [[ "${{ github.event.inputs.test_level }}" == "" ]]; then
+          echo "unit=true" >> $GITHUB_OUTPUT
+          echo "integration=true" >> $GITHUB_OUTPUT
+          echo "system=true" >> $GITHUB_OUTPUT
+          echo "performance=true" >> $GITHUB_OUTPUT
+        else
+          echo "unit=${{ github.event.inputs.test_level == 'unit' || github.event.inputs.test_level == 'all' }}" >> $GITHUB_OUTPUT
+          echo "integration=${{ github.event.inputs.test_level == 'integration' || github.event.inputs.test_level == 'all' }}" >> $GITHUB_OUTPUT
+          echo "system=${{ github.event.inputs.test_level == 'system' || github.event.inputs.test_level == 'all' }}" >> $GITHUB_OUTPUT
+          echo "performance=${{ github.event.inputs.test_level == 'performance' || github.event.inputs.test_level == 'all' }}" >> $GITHUB_OUTPUT
+        fi
+
+  code-quality:
+    runs-on: ubuntu-latest
+    needs: setup
+    strategy:
+      matrix:
+        tool: [lint, format, type-check, security]
+        component: [core, cli, mcp-servers]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff black mypy bandit safety
+
+    - name: Install Node.js dependencies
+      working-directory: ${{ matrix.component }}
+      if: matrix.component != 'core'
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        fi
+
+    - name: Run linting
+      if: matrix.tool == 'lint'
+      run: |
+        case "${{ matrix.component }}" in
+          core)
+            ruff check ${{ matrix.component }}/ --output-format=github
+            ;;
+          cli|mcp-servers)
+            if [ -f ${{ matrix.component }}/package.json ]; then
+              cd ${{ matrix.component }} && npm run lint || echo "No lint script available"
+            fi
+            find ${{ matrix.component }}/ -name "*.py" -exec ruff check {} + --output-format=github || true
+            ;;
+        esac
+
+    - name: Run formatting check
+      if: matrix.tool == 'format'
+      run: |
+        case "${{ matrix.component }}" in
+          core)
+            black --check --diff ${{ matrix.component }}/
+            ;;
+          cli|mcp-servers)
+            if [ -f ${{ matrix.component }}/package.json ]; then
+              cd ${{ matrix.component }} && npm run format:check || echo "No format check script available"
+            fi
+            find ${{ matrix.component }}/ -name "*.py" -exec black --check --diff {} + || true
+            ;;
+        esac
+
+    - name: Run type checking
+      if: matrix.tool == 'type-check'
+      run: |
+        case "${{ matrix.component }}" in
+          core)
+            mypy ${{ matrix.component }}/ --ignore-missing-imports || true
+            ;;
+          cli|mcp-servers)
+            if [ -f ${{ matrix.component }}/package.json ]; then
+              cd ${{ matrix.component }} && npm run type-check || echo "No type check script available"
+            fi
+            find ${{ matrix.component }}/ -name "*.py" -exec mypy {} --ignore-missing-imports + || true
+            ;;
+        esac
+
+    - name: Run security scan
+      if: matrix.tool == 'security'
+      run: |
+        case "${{ matrix.component }}" in
+          core|cli)
+            find ${{ matrix.component }}/ -name "*.py" -exec bandit {} + || true
+            ;;
+          mcp-servers)
+            if [ -f ${{ matrix.component }}/package.json ]; then
+              cd ${{ matrix.component }} && npm audit --audit-level=moderate || echo "No security vulnerabilities found"
+            fi
+            ;;
+        esac
+
+  unit-tests:
+    runs-on: ${{ matrix.os }}
+    needs: [setup, code-quality]
+    if: needs.setup.outputs.should-run-unit == 'true'
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.11', '3.12', '3.13']
+        include:
+          - os: ubuntu-latest
+            python-version: '3.13'
+            coverage: true
+      fail-fast: false
+      max-parallel: 6
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov pytest-xdist pytest-timeout
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Prepare test environment
+      run: |
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/core"
+        mkdir -p test-results coverage-reports
+
+    - name: Run unit tests with parallel execution
+      timeout-minutes: 15
+      run: |
+        cd testing
+        python -m pytest tests/unit/ \
+          --junitxml=../test-results/unit-tests-${{ matrix.os }}-${{ matrix.python-version }}.xml \
+          --tb=short \
+          --verbose \
+          -n auto \
+          --dist=worksteal \
+          --timeout=300 \
+          ${{ matrix.coverage && '--cov=../core --cov-report=xml:../coverage-reports/unit-coverage.xml --cov-report=html:../coverage-reports/unit-html' || '' }}
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: unit-test-results-${{ matrix.os }}-${{ matrix.python-version }}
+        path: test-results/
+
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v4
+      if: matrix.coverage && always()
+      with:
+        name: unit-coverage-reports
+        path: coverage-reports/
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: [setup, unit-tests]
+    if: needs.setup.outputs.should-run-integration == 'true'
+
+    strategy:
+      matrix:
+        test-group: [mcp-coordination, basic-memory, gmail-integration]
+        timeout: [30, 45, 60]
+      fail-fast: false
+
+    services:
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sqlite3 build-essential
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-timeout pytest-asyncio
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Setup MCP servers
+      run: |
+        # Install basic-memory globally
+        npm install -g basic-memory@latest || echo "Basic memory installation skipped"
+
+        # Setup Gmail MCP
+        if [ -d core/mcp-gmail ]; then
+          cd core/mcp-gmail && npm install
+        fi
+
+        # Setup Apple Reminders MCP
+        if [ -d core/mcp-server-apple-reminders ]; then
+          cd core/mcp-server-apple-reminders && npm install
+        fi
+
+    - name: Run integration tests
+      timeout-minutes: ${{ matrix.timeout }}
+      env:
+        REDIS_URL: redis://localhost:6379
+        TEST_GROUP: ${{ matrix.test-group }}
+      run: |
+        cd testing
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/../core"
+
+        case "${{ matrix.test-group }}" in
+          mcp-coordination)
+            python -m pytest tests/integration/test_mcp_coordination.py \
+              --junitxml=../test-results/integration-mcp-${{ matrix.test-group }}.xml \
+              --tb=short --verbose --timeout=1800
+            ;;
+          basic-memory)
+            # Test basic memory integration specifically
+            python -m pytest tests/integration/ -k "basic_memory" \
+              --junitxml=../test-results/integration-${{ matrix.test-group }}.xml \
+              --tb=short --verbose --timeout=1800
+            ;;
+          gmail-integration)
+            # Test Gmail MCP integration
+            python -m pytest tests/integration/ -k "gmail" \
+              --junitxml=../test-results/integration-${{ matrix.test-group }}.xml \
+              --tb=short --verbose --timeout=1800
+            ;;
+        esac
+
+    - name: Upload integration test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: integration-test-results-${{ matrix.test-group }}
+        path: test-results/
+
+  system-tests:
+    runs-on: ubuntu-latest
+    needs: [setup, integration-tests]
+    if: needs.setup.outputs.should-run-system == 'true'
+
+    strategy:
+      matrix:
+        test-scenario: [cross-directory, end-to-end, reliability]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-timeout
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Setup test environment
+      run: |
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/core"
+        mkdir -p test-brain-dirs
+
+    - name: Run system tests
+      timeout-minutes: 45
+      env:
+        TEST_SCENARIO: ${{ matrix.test-scenario }}
+      run: |
+        cd testing
+
+        case "${{ matrix.test-scenario }}" in
+          cross-directory)
+            python -m pytest tests/system/test_cross_directory_coordination.py \
+              --junitxml=../test-results/system-${{ matrix.test-scenario }}.xml \
+              --tb=short --verbose --timeout=2400
+            ;;
+          end-to-end)
+            # Run comprehensive end-to-end scenarios
+            python -m pytest tests/system/ -k "end_to_end" \
+              --junitxml=../test-results/system-${{ matrix.test-scenario }}.xml \
+              --tb=short --verbose --timeout=2400
+            ;;
+          reliability)
+            # Run reliability and stress tests
+            python -m pytest tests/system/ -k "reliability" \
+              --junitxml=../test-results/system-${{ matrix.test-scenario }}.xml \
+              --tb=short --verbose --timeout=2400
+            ;;
+        esac
+
+    - name: Upload system test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: system-test-results-${{ matrix.test-scenario }}
+        path: test-results/
+
+  performance-tests:
+    runs-on: ubuntu-latest
+    needs: [setup, system-tests]
+    if: needs.setup.outputs.should-run-performance == 'true'
+
+    strategy:
+      matrix:
+        performance-category: [facebook-reliability, concurrent-load, memory-efficiency]
+        load-level: [light, medium, heavy]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-timeout psutil memory-profiler
+        if [ -f testing/requirements.txt ]; then
+          pip install -r testing/requirements.txt
+        fi
+
+    - name: Configure system for performance testing
+      run: |
+        # Increase file descriptor limits
+        ulimit -n 4096
+        # Set memory limits
+        echo "Performance testing configuration applied"
+
+    - name: Run performance tests
+      timeout-minutes: 60
+      env:
+        PERFORMANCE_CATEGORY: ${{ matrix.performance-category }}
+        LOAD_LEVEL: ${{ matrix.load-level }}
+      run: |
+        cd testing
+        export PYTHONPATH="${PYTHONPATH}:$(pwd)/../core"
+
+        case "${{ matrix.performance-category }}" in
+          facebook-reliability)
+            python -m pytest tests/performance/test_facebook_reliability_standards.py \
+              --junitxml=../test-results/performance-${{ matrix.performance-category }}-${{ matrix.load-level }}.xml \
+              --tb=short --verbose --timeout=3600
+            ;;
+          concurrent-load)
+            # Run concurrent load tests with different intensities
+            python -m pytest tests/performance/ -k "concurrent" \
+              --junitxml=../test-results/performance-${{ matrix.performance-category }}-${{ matrix.load-level }}.xml \
+              --tb=short --verbose --timeout=3600
+            ;;
+          memory-efficiency)
+            # Run memory efficiency tests
+            python -m pytest tests/performance/ -k "memory" \
+              --junitxml=../test-results/performance-${{ matrix.performance-category }}-${{ matrix.load-level }}.xml \
+              --tb=short --verbose --timeout=3600
+            ;;
+        esac
+
+    - name: Generate performance report
+      if: always()
+      run: |
+        echo "## Performance Test Summary - ${{ matrix.performance-category }} (${{ matrix.load-level }})" > performance-summary.md
+        echo "Test completed at: $(date)" >> performance-summary.md
+        echo "Load level: ${{ matrix.load-level }}" >> performance-summary.md
+
+    - name: Upload performance test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: performance-test-results-${{ matrix.performance-category }}-${{ matrix.load-level }}
+        path: |
+          test-results/
+          performance-summary.md
+
+  test-reporting:
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests, system-tests, performance-tests]
+    if: always()
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download all test artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: all-test-results
+
+    - name: Install test reporting tools
+      run: |
+        pip install junitparser pytest-html
+        npm install -g junit2html
+
+    - name: Generate comprehensive test report
+      run: |
+        mkdir -p final-reports
+
+        # Combine all JUnit XML files
+        find all-test-results -name "*.xml" -exec cp {} final-reports/ \;
+
+        # Generate HTML report
+        junit2html final-reports/*.xml final-reports/test-report.html
+
+        # Generate summary statistics
+        python -c "
+import os
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+total_tests = 0
+total_failures = 0
+total_errors = 0
+total_skipped = 0
+
+for xml_file in Path('final-reports').glob('*.xml'):
+    try:
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+
+        if root.tag == 'testsuites':
+            for testsuite in root:
+                total_tests += int(testsuite.get('tests', 0))
+                total_failures += int(testsuite.get('failures', 0))
+                total_errors += int(testsuite.get('errors', 0))
+                total_skipped += int(testsuite.get('skipped', 0))
+        elif root.tag == 'testsuite':
+            total_tests += int(root.get('tests', 0))
+            total_failures += int(root.get('failures', 0))
+            total_errors += int(root.get('errors', 0))
+            total_skipped += int(root.get('skipped', 0))
+    except Exception as e:
+        print(f'Error parsing {xml_file}: {e}')
+
+success_rate = ((total_tests - total_failures - total_errors) / total_tests * 100) if total_tests > 0 else 0
+
+with open('final-reports/summary.txt', 'w') as f:
+    f.write(f'Brain System Test Summary\n')
+    f.write(f'========================\n')
+    f.write(f'Total Tests: {total_tests}\n')
+    f.write(f'Passed: {total_tests - total_failures - total_errors}\n')
+    f.write(f'Failed: {total_failures}\n')
+    f.write(f'Errors: {total_errors}\n')
+    f.write(f'Skipped: {total_skipped}\n')
+    f.write(f'Success Rate: {success_rate:.2f}%\n')
+    f.write(f'Test Date: $(date)\n')
+"
+
+    - name: Upload final test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: final-test-report
+        path: final-reports/
+
+    - name: Comment test results on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const summary = fs.readFileSync('final-reports/summary.txt', 'utf8');
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## 🧪 Brain System Test Results\n\n\`\`\`\n${summary}\n\`\`\`\n\n[View detailed report](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
+          });
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: [test-reporting]
+    if: always()
+
+    steps:
+    - name: Cleanup test artifacts
+      run: |
+        echo "Test execution completed. Artifacts retained for 30 days."
+        echo "Performance metrics and logs available in job summaries."

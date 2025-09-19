@@ -1,0 +1,357 @@
+name: Nightly Full Test Suite
+
+on:
+  schedule:
+    # Run every night at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      stress_level:
+        description: 'Stress test level'
+        required: false
+        default: 'normal'
+        type: choice
+        options:
+        - light
+        - normal
+        - heavy
+        - extreme
+
+env:
+  PYTHON_VERSION: '3.13'
+  NODE_VERSION: '20'
+
+jobs:
+  comprehensive-testing:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.11', '3.12', '3.13']
+        stress-level: [normal, heavy]
+        include:
+          - os: ubuntu-latest
+            python-version: '3.13'
+            stress-level: extreme
+      fail-fast: false
+      max-parallel: 3
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install system dependencies
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+          sudo apt-get update
+          sudo apt-get install -y sqlite3 build-essential htop
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+          brew install sqlite3
+        fi
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r testing/requirements.txt
+
+    - name: Install global dependencies
+      run: |
+        npm install -g basic-memory@latest || echo "Basic memory installation skipped"
+
+    - name: Configure stress test parameters
+      run: |
+        case "${{ matrix.stress-level }}" in
+          light)
+            echo "CONCURRENT_WORKERS=2" >> $GITHUB_ENV
+            echo "TEST_ITERATIONS=10" >> $GITHUB_ENV
+            echo "MEMORY_LOAD=100" >> $GITHUB_ENV
+            ;;
+          normal)
+            echo "CONCURRENT_WORKERS=4" >> $GITHUB_ENV
+            echo "TEST_ITERATIONS=25" >> $GITHUB_ENV
+            echo "MEMORY_LOAD=500" >> $GITHUB_ENV
+            ;;
+          heavy)
+            echo "CONCURRENT_WORKERS=8" >> $GITHUB_ENV
+            echo "TEST_ITERATIONS=50" >> $GITHUB_ENV
+            echo "MEMORY_LOAD=1000" >> $GITHUB_ENV
+            ;;
+          extreme)
+            echo "CONCURRENT_WORKERS=16" >> $GITHUB_ENV
+            echo "TEST_ITERATIONS=100" >> $GITHUB_ENV
+            echo "MEMORY_LOAD=2000" >> $GITHUB_ENV
+            ;;
+        esac
+
+    - name: Run comprehensive test suite
+      timeout-minutes: 180
+      env:
+        STRESS_LEVEL: ${{ matrix.stress-level }}
+      run: |
+        cd testing
+        python run_tests.py --all --parallel --coverage --facebook-tests --report
+
+    - name: Run extended performance tests
+      timeout-minutes: 120
+      if: matrix.stress-level == 'heavy' || matrix.stress-level == 'extreme'
+      run: |
+        cd testing
+        python -m pytest tests/performance/ \
+          --junitxml=test-results/extended-performance-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.stress-level }}.xml \
+          --timeout=7200 \
+          --run-facebook-tests \
+          -v
+
+    - name: Memory leak detection
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        cd testing
+        python -c "
+import psutil
+import time
+import subprocess
+
+print('Running memory leak detection...')
+initial_memory = psutil.virtual_memory().used
+
+# Run a subset of tests multiple times
+for i in range(5):
+    subprocess.run([
+        'python', '-m', 'pytest', 'tests/unit/', '-x', '--tb=no'
+    ], capture_output=True)
+
+    current_memory = psutil.virtual_memory().used
+    memory_increase = current_memory - initial_memory
+    print(f'Iteration {i+1}: Memory increase: {memory_increase / 1024 / 1024:.2f} MB')
+
+    if memory_increase > 500 * 1024 * 1024:  # 500MB threshold
+        print('WARNING: Potential memory leak detected')
+        exit(1)
+
+    time.sleep(2)
+
+print('Memory leak detection completed successfully')
+"
+
+    - name: Upload comprehensive test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: nightly-test-results-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.stress-level }}
+        path: |
+          testing/test-results/
+          testing/htmlcov/
+          testing/coverage-*.xml
+
+  facebook-reliability-validation:
+    runs-on: ubuntu-latest
+    needs: comprehensive-testing
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r testing/requirements.txt
+
+    - name: Run Facebook reliability standards
+      timeout-minutes: 240
+      run: |
+        cd testing
+        python -m pytest tests/performance/test_facebook_reliability_standards.py \
+          --junitxml=test-results/facebook-reliability.xml \
+          --run-facebook-tests \
+          --timeout=14400 \
+          -v -s
+
+    - name: Validate 99.9% uptime requirement
+      run: |
+        cd testing
+        python -c "
+import time
+import random
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path.cwd().parent / 'core'))
+
+from simple_brain import SimpleBrain
+
+print('Testing 99.9% uptime requirement...')
+failures = 0
+total_operations = 10000
+
+for i in range(total_operations):
+    try:
+        brain = SimpleBrain('/tmp/uptime_test')
+        result = brain.store(f'Uptime test {i}', importance=5)
+        brain.conn.close()
+
+        if 'success' not in result.lower():
+            failures += 1
+    except Exception as e:
+        failures += 1
+        print(f'Operation {i} failed: {e}')
+
+    if i % 1000 == 0:
+        current_uptime = ((total_operations - failures) / (i + 1)) * 100
+        print(f'Progress: {i+1}/{total_operations}, Current uptime: {current_uptime:.3f}%')
+
+final_uptime = ((total_operations - failures) / total_operations) * 100
+print(f'Final uptime: {final_uptime:.3f}%')
+print(f'Total failures: {failures}/{total_operations}')
+
+if final_uptime < 99.9:
+    print(f'FAILED: Uptime {final_uptime:.3f}% is below 99.9% requirement')
+    exit(1)
+else:
+    print(f'PASSED: Uptime {final_uptime:.3f}% meets 99.9% requirement')
+"
+
+    - name: Upload reliability test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: facebook-reliability-results
+        path: testing/test-results/
+
+  security-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety semgrep
+
+    - name: Run Bandit security scan
+      run: |
+        bandit -r core/ -f json -o security-bandit.json || true
+        bandit -r core/ -f txt
+
+    - name: Run Safety vulnerability scan
+      run: |
+        safety check --json --output security-safety.json || true
+        safety check
+
+    - name: Run Semgrep security scan
+      run: |
+        semgrep --config=auto core/ --json -o security-semgrep.json || true
+
+    - name: Upload security scan results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-scan-results
+        path: security-*.json
+
+  notification:
+    runs-on: ubuntu-latest
+    needs: [comprehensive-testing, facebook-reliability-validation, security-audit]
+    if: always()
+
+    steps:
+    - name: Download test results
+      uses: actions/download-artifact@v4
+      with:
+        path: all-results
+
+    - name: Generate nightly report
+      run: |
+        echo "# Brain System Nightly Test Report" > nightly-report.md
+        echo "Date: $(date)" >> nightly-report.md
+        echo "" >> nightly-report.md
+
+        # Count test results
+        total_artifacts=$(find all-results -name "*.xml" | wc -l)
+        echo "Total test artifacts: $total_artifacts" >> nightly-report.md
+
+        # Check for failures
+        if find all-results -name "*.xml" -exec grep -l "failures=" {} \; | grep -q .; then
+          echo "⚠️ Some tests failed - review required" >> nightly-report.md
+        else
+          echo "✅ All tests passed successfully" >> nightly-report.md
+        fi
+
+    - name: Create issue for failures
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `Nightly Test Failures - ${new Date().toISOString().split('T')[0]}`,
+            body: `
+            ## 🚨 Nightly Test Suite Failures
+
+            The nightly test suite has detected failures that require attention.
+
+            **Run Details:**
+            - Workflow: ${context.workflow}
+            - Run ID: ${context.runId}
+            - Date: ${new Date().toISOString()}
+
+            **Next Steps:**
+            1. Review the [workflow run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            2. Check test artifacts for detailed failure information
+            3. Address any reliability or performance regressions
+            4. Update tests if system behavior has intentionally changed
+
+            **Priority:** High - Brain system reliability is critical
+            `,
+            labels: ['bug', 'testing', 'high-priority', 'nightly-failure']
+          });
+
+  cleanup-old-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Delete old workflow runs
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const runs = await github.rest.actions.listWorkflowRuns({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'nightly-full-tests.yml',
+            per_page: 100
+          });
+
+          // Keep last 30 runs, delete older ones
+          const runsToDelete = runs.data.workflow_runs.slice(30);
+
+          for (const run of runsToDelete) {
+            try {
+              await github.rest.actions.deleteWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: run.id
+              });
+              console.log(`Deleted run ${run.id}`);
+            } catch (error) {
+              console.log(`Failed to delete run ${run.id}: ${error.message}`);
+            }
+          }
