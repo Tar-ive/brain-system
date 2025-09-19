@@ -1,0 +1,16 @@
+{
+  "id": "wm_20250911_161049",
+  "stored_at": "2025-09-11T16:10:49.885181+00:00",
+  "content": "Need to review the latest consumer spending data from the Federal Reserve. This will help with the THRC analysis methodology.",
+  "context": {
+    "source": "boss",
+    "work_type": "THRC"
+  },
+  "project_id": "econ-data",
+  "thinking_mode": "capture",
+  "importance_score": 0.8,
+  "connection_density": 0.0,
+  "tags": [
+    "boss-communication"
+  ]
+}

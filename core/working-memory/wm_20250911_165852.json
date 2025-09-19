@@ -1,0 +1,16 @@
+{
+  "id": "wm_20250911_165852",
+  "stored_at": "2025-09-11T16:58:52.343631+00:00",
+  "content": "{\"content\": \"Successfully integrated brain system with Claude Code for continuous memory chain across sessions\", \"importance\": 0.5, \"timestamp\": \"2025-09-11T16:58:52.319078+00:00\", \"context\": {}}",
+  "context": {
+    "source": "boss",
+    "work_type": "THRC"
+  },
+  "project_id": "econ-data",
+  "thinking_mode": "capture",
+  "importance_score": 0.8,
+  "connection_density": 0.0,
+  "tags": [
+    "boss-communication"
+  ]
+}

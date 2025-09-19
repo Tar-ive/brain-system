@@ -1,0 +1,16 @@
+{
+  "id": "wm_20250911_161044",
+  "stored_at": "2025-09-11T16:10:44.538470+00:00",
+  "content": "My boss emphasized that the THRC economic analysis needs to be prioritized this week. He mentioned the data quality issues we discussed and wants a preliminary report by Friday. The consumer spending patterns analysis is particularly critical for the upcoming board presentation.",
+  "context": {
+    "source": "boss",
+    "work_type": "THRC"
+  },
+  "project_id": "econ-data",
+  "thinking_mode": "capture",
+  "importance_score": 0.9,
+  "connection_density": 0.0,
+  "tags": [
+    "boss-communication"
+  ]
+}

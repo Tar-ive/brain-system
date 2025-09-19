@@ -1,0 +1,85 @@
+#!/bin/bash
+# Brain system command wrapper
+
+BRAIN_ROOT="/Users/tarive/brain"
+cd "$BRAIN_ROOT"
+
+# Activate virtual environment if it exists
+if [ -d "$BRAIN_ROOT/venv" ]; then
+    source "$BRAIN_ROOT/venv/bin/activate"
+fi
+
+case "$1" in
+    status)
+        python3 -c "from brain import brain; brain.status()"
+        ;;
+    
+    gmail-auth)
+        python3 -c "from brain import brain; brain.gmail.authenticate()"
+        ;;
+    
+    gmail-token)
+        if [ -z "$2" ]; then
+            echo "Usage: brain gmail-token 'YOUR_TOKEN'"
+            echo "Get token from OAuth Playground using your credentials"
+            exit 1
+        fi
+        python3 -c "from brain import brain; brain.gmail.save_token('$2')"
+        ;;
+    
+    gmail-test)
+        python3 -c "from brain import brain; brain.gmail.test_connection()"
+        ;;
+    
+    analyze-jobs)
+        python3 -c "from brain import brain; brain.analyze_job_emails()"
+        ;;
+    
+    send-email)
+        if [ $# -lt 4 ]; then
+            echo "Usage: brain send-email 'TO_EMAIL' 'SUBJECT' 'BODY'"
+            echo "Example: brain send-email 'user@example.com' 'Hello' 'This is a test message'"
+            exit 1
+        fi
+        python3 -c "from brain import brain; brain.send_email('$2', '$3', '$4')"
+        ;;
+    
+    process)
+        shift
+        python3 -c "from brain import brain; import sys; result = brain.process(' '.join(sys.argv[1:])); print(result)" "$@"
+        ;;
+    
+    interactive)
+        python3 "$BRAIN_ROOT/brain.py"
+        ;;
+    
+    setup-gmail)
+        "$BRAIN_ROOT/setup_gmail.sh"
+        ;;
+    
+    *)
+        echo "🧠 Brain System Commands"
+        echo "========================"
+        echo ""
+        echo "Usage: brain <command> [args]"
+        echo ""
+        echo "Commands:"
+        echo "  status         - Show system status"
+        echo "  gmail-auth     - Get OAuth Playground instructions"
+        echo "  gmail-token    - Set OAuth Playground token"
+        echo "  gmail-test     - Test Gmail connection"
+        echo "  analyze-jobs   - Analyze job application emails"
+        echo "  send-email     - Send an email via Gmail"
+        echo "  process        - Process text through brain"
+        echo "  interactive    - Interactive mode"
+        echo "  setup-gmail    - Gmail setup instructions"
+        echo ""
+        echo "Examples:"
+        echo "  brain status"
+        echo "  brain gmail-auth"
+        echo "  brain gmail-token 'ya29.a0AfH...'"
+        echo "  brain analyze-jobs"
+        echo "  brain send-email 'user@example.com' 'Subject' 'Message body'"
+        echo "  brain process 'Remember to call mom tomorrow'"
+        ;;
+esac

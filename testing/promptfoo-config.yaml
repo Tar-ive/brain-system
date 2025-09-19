@@ -1,0 +1,39 @@
+# Brain System Testing Configuration
+description: "Comprehensive Brain System Testing - Facebook.com Reliability Standard"
+
+# Model configuration for testing
+providers:
+  - id: claude-3-5-sonnet
+    config:
+      temperature: 0
+      max_tokens: 4096
+
+# Test suites for different brain system components
+prompts:
+  - file://tests/memory_tests.yaml
+  - file://tests/xml_processing_tests.yaml
+  - file://tests/goal_tracking_tests.yaml
+  - file://tests/integration_tests.yaml
+
+# Test data
+tests:
+  - vars:
+      memory_content: "Test memory for brain system validation"
+      session_id: "test_session_001"
+      expected_storage_location: "/brain-consolidated/data/test_session_001.md"
+    assert:
+      - type: contains
+        value: "memory successfully stored"
+      - type: latency
+        threshold: 50  # 50ms requirement
+      - type: cost
+        threshold: 0.01
+
+# Output configuration
+outputPath: "./test_results"
+
+# Test execution settings
+evaluateOptions:
+  maxConcurrency: 1  # Sequential execution for integration tests
+  repeat: 3  # Run each test 3 times for reliability
+  delay: 100  # 100ms delay between tests

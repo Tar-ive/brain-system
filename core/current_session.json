@@ -1,0 +1,56 @@
+{
+  "last_session": "2025-09-19T01:11:34.006615",
+  "project": "brain-poc",
+  "status": "POC implementation and testing",
+  "completed_tasks": [
+    "Created brain POC with scoring algorithm",
+    "Integrated with Obsidian vault structure",
+    "Created people tracking system",
+    "Fixed iMessage MCP integration",
+    "Implemented self-healing capabilities",
+    "Replied to Cathy"
+  ],
+  "pending_tasks": [
+    "Send work update to Dr. Ekren (dci-analysis)",
+    "Reply to Harshal",
+    "Validate job_dread_mvp idea from claude_web"
+  ],
+  "key_files": {
+    "brain_plan": "/Users/tarive/brain.md",
+    "poc_dir": "/Users/tarive/brain-poc/",
+    "search_command": "~/bin/bf",
+    "people_dir": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/people/",
+    "daily_tasks": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/daily/2025-09-11-tasks.md"
+  },
+  "entities": {
+    "girlfriend": [
+      "kusum",
+      "baby",
+      "shona",
+      "puntu"
+    ],
+    "dr_ekren": [
+      "professor",
+      "dci-analysis supervisor"
+    ],
+    "claude_web": [
+      "AI agent",
+      "suggested job_dread_mvp"
+    ],
+    "cathy": [
+      "replied \u2705"
+    ],
+    "harshal": [
+      "needs reply"
+    ],
+    "aditya": [
+      "contact"
+    ]
+  },
+  "notes": [
+    "Working memory has 7-item limit",
+    "Scoring threshold is 0.75",
+    "iMessage MCP needs macOS permissions",
+    "Self-healing can fix duplicate IDs and broken links"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "xml_tags": {
+    "people": {
+      "description": "Person references",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/people",
+      "examples": [
+        "<people>baby</people>",
+        "<people>harshal</people>"
+      ]
+    },
+    "project": {
+      "description": "Project references",
+      "examples": [
+        "<project>ybrowser</project>",
+        "<project>brain-system</project>"
+      ]
+    },
+    "b": {
+      "description": "Brain system functionalities/updates",
+      "examples": [
+        "<b>add indexing docs</b>",
+        "<b>fix search bug</b>"
+      ]
+    },
+    "bfeatures": {
+      "description": "Brain system feature requests",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
+      "examples": [
+        "<bfeatures>integrate with imessage</bfeatures>",
+        "<bfeatures>add voice notes</bfeatures>"
+      ]
+    },
+    "bfeature": {
+      "description": "Brain system feature requests (singular form)",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
+      "examples": [
+        "<bfeature>add whatsapp mcp</bfeature>",
+        "<bfeature>integrate calendar sync</bfeature>"
+      ]
+    },
+    "daily": {
+      "description": "Daily project status and progress tracking",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/daily",
+      "examples": [
+        "<daily>brain-system project 80% complete</daily>",
+        "<daily>ybrowser integration testing phase</daily>"
+      ]
+    },
+    "insight": {
+      "description": "Key insights, discoveries, and breakthrough moments",
+      "storage_location": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/insights",
+      "examples": [
+        "<insight>unified brain approach reduces cognitive load</insight>",
+        "<insight>XML tagging provides natural categorization</insight>"
+      ]
+    },
+    "research": {
+      "description": "Research insights and findings",
+      "examples": [
+        "<research>Newton's philosophy of time</research>",
+        "<research>quantum computing applications</research>"
+      ]
+    },
+    "goals": {
+      "description": "Personal and professional goals",
+      "examples": [
+        "<goals>get O1 visa</goals>",
+        "<goals>complete PhD</goals>"
+      ]
+    },
+    "chores": {
+      "description": "Daily tasks and chores",
+      "examples": [
+        "<chores>make baby chutney</chores>",
+        "<chores>grocery shopping</chores>"
+      ]
+    }
+  },
+  "dimensions": {
+    "personal": {
+      "description": "Personal life, relationships, health",
+      "weight": 1.0
+    },
+    "work": {
+      "description": "Professional work, job applications",
+      "weight": 1.0
+    },
+    "research": {
+      "description": "Academic research, papers, insights",
+      "weight": 1.2
+    },
+    "uni": {
+      "description": "University activities, courses, deadlines",
+      "weight": 1.0
+    },
+    "startup": {
+      "description": "Entrepreneurial activities, business ideas",
+      "weight": 1.1
+    }
+  },
+  "integration": {
+    "simple_brain": true,
+    "goal_keeper": true,
+    "working_memory": true,
+    "basic_memory": true,
+    "obsidian_sync": true,
+    "obsidian_people_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/people",
+    "obsidian_bfeatures_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/bfeatures",
+    "obsidian_daily_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/daily",
+    "obsidian_insights_directory": "/Users/tarive/Library/Mobile Documents/iCloud~md~obsidian/Documents/Saksham/insights"
+  }
+}

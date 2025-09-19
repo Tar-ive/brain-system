@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "id": "wm_20250911_161319",
+      "stored_at": "2025-09-11T16:13:19.327274+00:00",
+      "importance_score": 0.9,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_161044",
+      "stored_at": "2025-09-11T16:10:44.538470+00:00",
+      "importance_score": 0.9,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_165852",
+      "stored_at": "2025-09-11T16:58:52.343631+00:00",
+      "importance_score": 0.8,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_165842",
+      "stored_at": "2025-09-11T16:58:42.984188+00:00",
+      "importance_score": 0.8,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_165614",
+      "stored_at": "2025-09-11T16:56:14.348757+00:00",
+      "importance_score": 0.8,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_165603",
+      "stored_at": "2025-09-11T16:56:03.890886+00:00",
+      "importance_score": 0.8,
+      "project_id": "econ-data"
+    },
+    {
+      "id": "wm_20250911_161053",
+      "stored_at": "2025-09-11T16:10:53.457309+00:00",
+      "importance_score": 0.8,
+      "project_id": "econ-data"
+    }
+  ],
+  "last_updated": "2025-09-11T17:15:06.203915+00:00",
+  "capacity": 7,
+  "current_count": 7
+}

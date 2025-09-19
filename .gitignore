@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+*.log
+.venv/
+venv/
+tokens/
+credentials/
+*.json.backup
+.auto_commit_state.json
+.sync_manifest.json

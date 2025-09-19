@@ -1,0 +1,553 @@
+{
+  "brain_system": {
+    "started": "2025-09-14T16:59:38.973471",
+    "status": "active",
+    "excitement_level": 3,
+    "days_worked": 152,
+    "last_win": "2025-09-14T17:13:02.993320",
+    "commitment": "Build this to the core - no abandonment",
+    "next_actions": [],
+    "blockers": [
+      {
+        "issue": "Thread 3 blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.022539",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.057767",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.090015",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.154014",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.256152",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.303028",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.371045",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.427876",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.472888",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:39.536669",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:55.418543",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:55.542907",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:55.800319",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:55.987069",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.071191",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.225722",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.458402",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.631929",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.770995",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 3 blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T16:59:56.834140",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.333988",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.369082",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.408118",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.468022",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.523587",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.562603",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.602622",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.655380",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.699914",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 2 blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T17:00:18.732203",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.050169",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.111215",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.171757",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.232999",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.280185",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.341763",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.424598",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.480337",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.541871",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 4 blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:58.580186",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 0",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.171508",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.171716",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 2",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.171920",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.172128",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 4",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.172329",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.172588",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 6",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.172808",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.173042",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 8",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.173243",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.173442",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 10",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.173642",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.173860",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 12",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.174154",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.174389",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 14",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.174632",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.174871",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 16",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.175109",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.175344",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 18",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.175591",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T17:02:59.175854",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:01.810550",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:01.876398",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:01.961612",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.032531",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.105130",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.185347",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.284974",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.354999",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.436226",
+        "resolved": false
+      },
+      {
+        "issue": "Thread 1 blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:02.482285",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 0",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.004327",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 1",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.004648",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 2",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.005111",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 3",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.005394",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 4",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.005677",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 5",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.005960",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 6",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.006251",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 7",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.006631",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 8",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.006931",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 9",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.007304",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 10",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.007607",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 11",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.007912",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 12",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.008220",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 13",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.008524",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 14",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.008833",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 15",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.009146",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 16",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.009474",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 17",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.009799",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 18",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.010119",
+        "resolved": false
+      },
+      {
+        "issue": "Performance test blocker 19",
+        "severity": 5,
+        "logged": "2025-09-14T17:13:03.010439",
+        "resolved": false
+      }
+    ]
+  }
+}

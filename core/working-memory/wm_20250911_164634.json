@@ -1,0 +1,27 @@
+{
+  "id": "wm_20250911_164634",
+  "stored_at": "2025-09-11T16:46:34.172601+00:00",
+  "content": "Make chutney for baby today. Remember that kusum, baby, shona, and puntu are all the same person (girlfriend).",
+  "context": {
+    "type": "personal_reminder",
+    "priority": "high",
+    "deadline": "today",
+    "person": "girlfriend",
+    "entity_aliases": [
+      "kusum",
+      "baby",
+      "shona",
+      "puntu"
+    ]
+  },
+  "project_id": "personal",
+  "thinking_mode": "capture",
+  "importance_score": 0.7,
+  "connection_density": 0.216,
+  "tags": [
+    "personal",
+    "cooking",
+    "girlfriend",
+    "today"
+  ]
+}

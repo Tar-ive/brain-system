@@ -1,0 +1,16 @@
+{
+  "id": "wm_20250911_165603",
+  "stored_at": "2025-09-11T16:56:03.890886+00:00",
+  "content": "{\"content\": \"Testing unified brain integration for continuous memory chain\", \"importance\": 0.8, \"timestamp\": \"2025-09-11T16:56:03.865589+00:00\", \"context\": {}}",
+  "context": {
+    "source": "boss",
+    "work_type": "THRC"
+  },
+  "project_id": "econ-data",
+  "thinking_mode": "capture",
+  "importance_score": 0.8,
+  "connection_density": 0.0,
+  "tags": [
+    "boss-communication"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "wm_20250911_161319",
+  "stored_at": "2025-09-11T16:13:19.327274+00:00",
+  "content": "During today's meeting, the boss stressed that our THRC economic modeling project needs immediate attention. The Federal Reserve data integration is behind schedule and could impact the Q4 budget analysis. He wants daily updates until we're back on track and emphasized this is a board-level priority.",
+  "context": {
+    "source": "boss",
+    "work_type": "THRC",
+    "meeting_type": "daily_standup",
+    "urgency": "high",
+    "related_projects": [
+      "federal-reserve-integration",
+      "Q4-budget"
+    ]
+  },
+  "project_id": "econ-data",
+  "thinking_mode": "capture",
+  "importance_score": 0.9,
+  "connection_density": 0.6,
+  "tags": [
+    "boss-communication",
+    "urgent",
+    "THRC",
+    "federal-reserve"
+  ]
+}

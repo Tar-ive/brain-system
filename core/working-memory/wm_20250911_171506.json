@@ -1,0 +1,22 @@
+{
+  "id": "wm_20250911_171506",
+  "stored_at": "2025-09-11T17:15:06.203047+00:00",
+  "content": "Meeting with Dr. Tahir at 4pm today - September 11, 2025",
+  "context": {
+    "type": "meeting",
+    "person": "Dr. Tahir",
+    "time": "4:00 PM",
+    "date": "2025-09-11",
+    "status": "scheduled"
+  },
+  "project_id": "personal",
+  "thinking_mode": "capture",
+  "importance_score": 0.5,
+  "connection_density": 0.132,
+  "tags": [
+    "meeting",
+    "dr-tahir",
+    "today",
+    "4pm"
+  ]
+}

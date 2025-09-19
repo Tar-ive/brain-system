@@ -1,0 +1,422 @@
+[
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 0",
+    "timestamp": "2025-09-14T17:13:01.740945",
+    "excitement_before": 5,
+    "excitement_after": 6
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 2",
+    "timestamp": "2025-09-14T17:13:01.811837",
+    "excitement_before": 5.5,
+    "excitement_after": 6.5
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 4",
+    "timestamp": "2025-09-14T17:13:01.877533",
+    "excitement_before": 6.0,
+    "excitement_after": 7.0
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 6",
+    "timestamp": "2025-09-14T17:13:01.963089",
+    "excitement_before": 6.5,
+    "excitement_after": 7.5
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 8",
+    "timestamp": "2025-09-14T17:13:02.033238",
+    "excitement_before": 7.0,
+    "excitement_after": 8.0
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 10",
+    "timestamp": "2025-09-14T17:13:02.105582",
+    "excitement_before": 7.5,
+    "excitement_after": 8.5
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 12",
+    "timestamp": "2025-09-14T17:13:02.185762",
+    "excitement_before": 8.0,
+    "excitement_after": 9.0
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 14",
+    "timestamp": "2025-09-14T17:13:02.285625",
+    "excitement_before": 8.5,
+    "excitement_after": 9.5
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 16",
+    "timestamp": "2025-09-14T17:13:02.356073",
+    "excitement_before": 9.0,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Thread 1 win 18",
+    "timestamp": "2025-09-14T17:13:02.436881",
+    "excitement_before": 9.5,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 0",
+    "timestamp": "2025-09-14T17:13:02.484214",
+    "excitement_before": 9.5,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 1",
+    "timestamp": "2025-09-14T17:13:02.496265",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 2",
+    "timestamp": "2025-09-14T17:13:02.506954",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 3",
+    "timestamp": "2025-09-14T17:13:02.516788",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 4",
+    "timestamp": "2025-09-14T17:13:02.526595",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 5",
+    "timestamp": "2025-09-14T17:13:02.536991",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 6",
+    "timestamp": "2025-09-14T17:13:02.548697",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 7",
+    "timestamp": "2025-09-14T17:13:02.558094",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 8",
+    "timestamp": "2025-09-14T17:13:02.567190",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 9",
+    "timestamp": "2025-09-14T17:13:02.576375",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 10",
+    "timestamp": "2025-09-14T17:13:02.586245",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 11",
+    "timestamp": "2025-09-14T17:13:02.596628",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 12",
+    "timestamp": "2025-09-14T17:13:02.606776",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 13",
+    "timestamp": "2025-09-14T17:13:02.617114",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 14",
+    "timestamp": "2025-09-14T17:13:02.626388",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 15",
+    "timestamp": "2025-09-14T17:13:02.635954",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 16",
+    "timestamp": "2025-09-14T17:13:02.647011",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 17",
+    "timestamp": "2025-09-14T17:13:02.657408",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 18",
+    "timestamp": "2025-09-14T17:13:02.667509",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 19",
+    "timestamp": "2025-09-14T17:13:02.677190",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 20",
+    "timestamp": "2025-09-14T17:13:02.686759",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 21",
+    "timestamp": "2025-09-14T17:13:02.697799",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 22",
+    "timestamp": "2025-09-14T17:13:02.708246",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 23",
+    "timestamp": "2025-09-14T17:13:02.718496",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 24",
+    "timestamp": "2025-09-14T17:13:02.728503",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 25",
+    "timestamp": "2025-09-14T17:13:02.739486",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 26",
+    "timestamp": "2025-09-14T17:13:02.751112",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 27",
+    "timestamp": "2025-09-14T17:13:02.760383",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 28",
+    "timestamp": "2025-09-14T17:13:02.769794",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 29",
+    "timestamp": "2025-09-14T17:13:02.779525",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 30",
+    "timestamp": "2025-09-14T17:13:02.789127",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 31",
+    "timestamp": "2025-09-14T17:13:02.798708",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 32",
+    "timestamp": "2025-09-14T17:13:02.808659",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 33",
+    "timestamp": "2025-09-14T17:13:02.818299",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 34",
+    "timestamp": "2025-09-14T17:13:02.827863",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 35",
+    "timestamp": "2025-09-14T17:13:02.845358",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 36",
+    "timestamp": "2025-09-14T17:13:02.856387",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 37",
+    "timestamp": "2025-09-14T17:13:02.866816",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 38",
+    "timestamp": "2025-09-14T17:13:02.877148",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 39",
+    "timestamp": "2025-09-14T17:13:02.887814",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 40",
+    "timestamp": "2025-09-14T17:13:02.899314",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 41",
+    "timestamp": "2025-09-14T17:13:02.909819",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 42",
+    "timestamp": "2025-09-14T17:13:02.919866",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 43",
+    "timestamp": "2025-09-14T17:13:02.930041",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 44",
+    "timestamp": "2025-09-14T17:13:02.940717",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 45",
+    "timestamp": "2025-09-14T17:13:02.952452",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 46",
+    "timestamp": "2025-09-14T17:13:02.963022",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 47",
+    "timestamp": "2025-09-14T17:13:02.973285",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 48",
+    "timestamp": "2025-09-14T17:13:02.983278",
+    "excitement_before": 10,
+    "excitement_after": 10
+  },
+  {
+    "project": "brain_system",
+    "win": "Performance test win 49",
+    "timestamp": "2025-09-14T17:13:02.993317",
+    "excitement_before": 10,
+    "excitement_after": 10
+  }
+]

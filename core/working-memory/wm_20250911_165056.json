@@ -1,0 +1,22 @@
+{
+  "id": "wm_20250911_165056",
+  "stored_at": "2025-09-11T16:50:56.358953+00:00",
+  "content": "Reply to Harshal",
+  "context": {
+    "type": "task",
+    "action": "reply",
+    "person": "harshal",
+    "deadline": "today",
+    "status": "pending"
+  },
+  "project_id": "personal",
+  "thinking_mode": "capture",
+  "importance_score": 0.7,
+  "connection_density": 0.036,
+  "tags": [
+    "communication",
+    "reply",
+    "harshal",
+    "today"
+  ]
+}

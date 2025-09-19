@@ -1,0 +1,22 @@
+{
+  "id": "wm_20250911_161902",
+  "stored_at": "2025-09-11T16:19:02.695837+00:00",
+  "content": "During our meeting on Sept 11, Dr. Ekren told me that the dci-analysis project was taking shape nicely and I should keep up the good work.",
+  "context": {
+    "source": "Dr. Ekren",
+    "meeting_date": "2025-09-11",
+    "meeting_type": "project_review",
+    "sentiment": "positive_feedback",
+    "project_discussed": "dci-analysis"
+  },
+  "project_id": "dci-analysis",
+  "thinking_mode": "capture",
+  "importance_score": 0.5,
+  "connection_density": 0.372,
+  "tags": [
+    "dr-ekren",
+    "positive-feedback",
+    "dci-analysis",
+    "meeting-notes"
+  ]
+}
