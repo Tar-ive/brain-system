@@ -5,8 +5,6 @@ import {
   useVideoConfig,
   interpolate,
   spring,
-  Audio,
-  staticFile,
 } from 'remotion';
 import { TransitionSeries, linearTiming, springTiming } from '@remotion/transitions';
 import { fade } from '@remotion/transitions/fade';
